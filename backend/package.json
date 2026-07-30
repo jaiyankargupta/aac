@@ -1,0 +1,14 @@
+{
+  "name": "aac-backend-proxy",
+  "version": "1.0.0",
+  "private": true,
+  "description": "High-performance Byte-Range Streaming PDF Proxy Backend for https://aac.rustyn.me",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
