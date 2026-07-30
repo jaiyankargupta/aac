@@ -2,15 +2,14 @@ import http from 'http';
 import https from 'https';
 import { URL } from 'url';
 
-const PORT = process.env.PORT || 3000;
-const ALLOWED_ORIGIN = process.env.ALLOWED_ORIGIN || 'https://aac.rustyn.me';
+const PORT = process.env.PORT || 10000;
 
 const httpsAgent = new https.Agent({ keepAlive: true, maxSockets: 50, freeSocketTimeout: 30000 });
 const httpAgent = new http.Agent({ keepAlive: true, maxSockets: 50, freeSocketTimeout: 30000 });
 
 function handlePdfProxy(req, res) {
   const reqOrigin = req.headers.origin || '';
-  const allowedOrigin = (reqOrigin.endsWith('rustyn.me') || reqOrigin.includes('localhost'))
+  const allowedOrigin = (reqOrigin.endsWith('rustyn.me'))
     ? reqOrigin
     : 'https://aac.rustyn.me';
 

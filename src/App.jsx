@@ -6,8 +6,6 @@ import Footer from './components/Footer';
 import { PAPERS_DATA } from './data/papers';
 import { BookOpen } from 'lucide-react';
 
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "https://aac-ue14.onrender.com";
-
 export default function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState('ALL');
