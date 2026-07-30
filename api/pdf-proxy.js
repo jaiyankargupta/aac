@@ -3,6 +3,21 @@ import http from 'http';
 import { URL } from 'url';
 
 export default function handler(req, res) {
+  const reqOrigin = req.headers.origin || '';
+  const allowedOrigin = (reqOrigin.endsWith('rustyn.me') || reqOrigin.includes('localhost') || reqOrigin.includes('127.0.0.1'))
+    ? reqOrigin
+    : 'https://aac.rustyn.me';
+
+  res.setHeader('Access-Control-Allow-Origin', allowedOrigin);
+  res.setHeader('Access-Control-Allow-Methods', 'GET, HEAD, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Range');
+
+  if (req.method === 'OPTIONS') {
+    res.statusCode = 204;
+    res.end();
+    return;
+  }
+
   const reqUrl = new URL(req.url, `https://${req.headers.host || 'aac.rustyn.me'}`);
 
   if (reqUrl.searchParams.get('health') === '1' || req.url === '/health') {

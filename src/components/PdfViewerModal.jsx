@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { X, Download, FileText, ArrowLeft, Loader2 } from 'lucide-react';
+import { X, Download, FileText, ArrowLeft, Loader2, Folder } from 'lucide-react';
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "https://aac-ue14.onrender.com";
 
@@ -146,9 +146,62 @@ export default function PdfViewerModal({ file, paperColor, onClose }) {
         </div>
       </div>
 
-      {/* Main Fullscreen Viewer Section - Native Inline PDF Reader */}
-      <div style={{ flex: 1, width: '100%', height: 'calc(100vh - 64px)', background: '#000000', position: 'relative' }}>
-        {isWarmingUp ? (
+      {/* Main Fullscreen Viewer Section */}
+      <div style={{ flex: 1, width: '100%', height: 'calc(100vh - 64px)', background: '#090d16', position: 'relative' }}>
+        {file.type === 'folder' ? (
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', padding: '2rem' }}>
+            <div style={{
+              background: 'rgba(255, 255, 255, 0.04)',
+              border: '1px solid rgba(255, 255, 255, 0.12)',
+              borderRadius: '16px',
+              padding: '3rem 2.5rem',
+              maxWidth: '520px',
+              width: '100%',
+              textAlign: 'center',
+              boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.7)'
+            }}>
+              <div style={{
+                width: '64px',
+                height: '64px',
+                borderRadius: '50%',
+                background: 'rgba(99, 102, 241, 0.15)',
+                border: '1px solid rgba(99, 102, 241, 0.3)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                margin: '0 auto 1.5rem auto'
+              }}>
+                <FileText size={32} color={paperColor || '#818cf8'} />
+              </div>
+
+              <h3 style={{ fontSize: '1.3rem', fontWeight: 700, color: 'white', marginBottom: '0.5rem' }}>
+                {file.name}
+              </h3>
+              <p style={{ color: '#94a3b8', fontSize: '0.9rem', marginBottom: '2rem' }}>
+                Folder collection hosted on GitHub Releases. Click below to browse and access all folder resources.
+              </p>
+
+              <a
+                href={pdfUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary-drive"
+                style={{
+                  backgroundColor: paperColor || '#4f46e5',
+                  padding: '0.75rem 2rem',
+                  fontSize: '1rem',
+                  fontWeight: 600,
+                  width: '100%',
+                  justifyContent: 'center',
+                  textDecoration: 'none'
+                }}
+              >
+                <Folder size={18} style={{ marginRight: '0.5rem' }} />
+                <span>Open Folder Resources</span>
+              </a>
+            </div>
+          </div>
+        ) : isWarmingUp ? (
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', color: '#fff' }}>
             <Loader2 size={36} style={{ animation: 'spin 1s linear infinite', marginBottom: '1rem', color: paperColor || '#818cf8' }} />
             <p style={{ fontSize: '0.95rem', fontWeight: 600 }}>⚡ Connecting to High-Speed PDF Server...</p>
