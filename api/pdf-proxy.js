@@ -43,10 +43,15 @@ export default function handler(req, res) {
         return;
       }
 
+      const reqOrigin = req.headers.origin || '';
+      const allowedOrigin = (reqOrigin.endsWith('rustyn.me') || reqOrigin.includes('localhost'))
+        ? reqOrigin
+        : 'https://aac.rustyn.me';
+
       res.statusCode = targetRes.statusCode || 200;
       res.setHeader('Content-Type', 'application/pdf');
       res.setHeader('Content-Disposition', 'inline');
-      res.setHeader('Access-Control-Allow-Origin', '*');
+      res.setHeader('Access-Control-Allow-Origin', allowedOrigin);
       res.setHeader('Accept-Ranges', 'bytes');
       res.setHeader('Cache-Control', 'public, max-age=3600');
 

@@ -3,11 +3,16 @@ import https from 'https';
 import { URL } from 'url';
 
 const PORT = process.env.PORT || 3000;
-const ALLOWED_ORIGIN = process.env.ALLOWED_ORIGIN || '*';
+const ALLOWED_ORIGIN = process.env.ALLOWED_ORIGIN || 'https://aac.rustyn.me';
 
 function handlePdfProxy(req, res) {
-  // Set CORS Headers
-  res.setHeader('Access-Control-Allow-Origin', ALLOWED_ORIGIN);
+  const reqOrigin = req.headers.origin || '';
+  const allowedOrigin = (reqOrigin.endsWith('rustyn.me') || reqOrigin.includes('localhost'))
+    ? reqOrigin
+    : 'https://aac.rustyn.me';
+
+  // Set Strict CORS Headers
+  res.setHeader('Access-Control-Allow-Origin', allowedOrigin);
   res.setHeader('Access-Control-Allow-Methods', 'GET, HEAD, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Range');
 

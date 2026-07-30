@@ -2,17 +2,19 @@ import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { X, Download, FileText, ArrowLeft, Loader2 } from 'lucide-react';
 
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "https://aac-ue14.onrender.com";
+
 export default function PdfViewerModal({ file, paperColor, onClose }) {
   if (!file) return null;
 
   const [isWarmingUp, setIsWarmingUp] = useState(true);
   const pdfUrl = file.downloadUrl;
-  const proxyViewerUrl = `/api/pdf-proxy?url=${encodeURIComponent(pdfUrl)}`;
+  const proxyViewerUrl = `${BACKEND_URL}/api/pdf-proxy?url=${encodeURIComponent(pdfUrl)}`;
 
   useEffect(() => {
     let active = true;
     // Quick health ping to warm up server if Render is sleeping
-    fetch('/api/pdf-proxy?health=1')
+    fetch(`${BACKEND_URL}/health`)
       .then(res => res.json())
       .then(() => {
         if (active) setIsWarmingUp(false);
