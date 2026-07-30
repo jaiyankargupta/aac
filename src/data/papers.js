@@ -171,12 +171,12 @@ export const PAPERS_DATA = [
         size: "Main Volume 3 PDF"
       },
       {
-        id: "1GBuEKW5ONRqGuxmqY4oSxtZ1ronYVXj6",
-        name: "SOLUTIONS & PRACTICE SETS",
-        type: "folder",
-        downloadUrl: "https://github.com/jaiyankargupta/aac/releases/tag/v1.0.0",
-        viewUrl: "https://github.com/jaiyankargupta/aac/releases/tag/v1.0.0",
-        size: "Folder / Solutions"
+        id: "1t9OzbXSjURyxa1cXcGAruo7v7n6q0qql",
+        name: "SOLUTIONS & PRACTICE SETS.pdf",
+        type: "pdf",
+        downloadUrl: getDirectDownloadLink("1t9OzbXSjURyxa1cXcGAruo7v7n6q0qql"),
+        viewUrl: getViewLink("1t9OzbXSjURyxa1cXcGAruo7v7n6q0qql"),
+        size: "Financial Accounting Solutions PDF"
       }
     ]
   },
@@ -243,20 +243,20 @@ export const PAPERS_DATA = [
         size: "Indirect Tax Question Bank"
       },
       {
-        id: "1w4_K8_5LbuNjAxEMuaXHOfb1rFefuWLG",
-        name: "EXAMPLE & HW QUESTIONS",
-        type: "folder",
-        downloadUrl: "https://github.com/jaiyankargupta/aac/releases/tag/v1.0.0",
-        viewUrl: "https://github.com/jaiyankargupta/aac/releases/tag/v1.0.0",
-        size: "Folder / Practice"
+        id: "1Fqv1BNW6p6YSwBp5znvMVxlpu3WFO2U7",
+        name: "EXAMPLE & HW QUESTIONS (DT).pdf",
+        type: "pdf",
+        downloadUrl: getDirectDownloadLink("1Fqv1BNW6p6YSwBp5znvMVxlpu3WFO2U7"),
+        viewUrl: getViewLink("1Fqv1BNW6p6YSwBp5znvMVxlpu3WFO2U7"),
+        size: "Direct Tax Practice Questions PDF"
       },
       {
-        id: "1CDrvdME5EAKr0DyhZEdFN0ICZI-twoAU",
-        name: "EXTRA FILES & AMENDMENTS",
-        type: "folder",
-        downloadUrl: "https://github.com/jaiyankargupta/aac/releases/tag/v1.0.0",
-        viewUrl: "https://github.com/jaiyankargupta/aac/releases/tag/v1.0.0",
-        size: "Folder / Amendments"
+        id: "1NuxS2XsKKg7Nw7hMM6tsy2hn6JV0GDGt",
+        name: "EXTRA FILES & AMENDMENTS (IDT).pdf",
+        type: "pdf",
+        downloadUrl: getDirectDownloadLink("1NuxS2XsKKg7Nw7hMM6tsy2hn6JV0GDGt"),
+        viewUrl: getViewLink("1NuxS2XsKKg7Nw7hMM6tsy2hn6JV0GDGt"),
+        size: "Indirect Tax Amendments PDF"
       }
     ]
   },
@@ -299,12 +299,12 @@ export const PAPERS_DATA = [
         size: "Formula & Summary Charts"
       },
       {
-        id: "1FuVvb3r0_UBhm3V5VFXYlfSeCaoqNhvx",
-        name: "EXTRA FILES",
-        type: "folder",
-        downloadUrl: "https://github.com/jaiyankargupta/aac/releases/tag/v1.0.0",
-        viewUrl: "https://github.com/jaiyankargupta/aac/releases/tag/v1.0.0",
-        size: "Folder / Practice"
+        id: "1J967OMkvOy5sFJiNs7JdW13mI5Hhgbpj",
+        name: "EXTRA FILES (CHARTS).pdf",
+        type: "pdf",
+        downloadUrl: getDirectDownloadLink("1J967OMkvOy5sFJiNs7JdW13mI5Hhgbpj"),
+        viewUrl: getViewLink("1J967OMkvOy5sFJiNs7JdW13mI5Hhgbpj"),
+        size: "Cost Accounting Summary Charts PDF"
       }
     ]
   },
@@ -381,12 +381,12 @@ export const PAPERS_DATA = [
         size: "Auditing Main Book"
       },
       {
-        id: "1wseXO86hEkXyCpZOwpd4YJJZWXXorBzM",
-        name: "COMPANY ACCOUNTS SCHEDULE 3 HW SOLUTIONS",
-        type: "folder",
-        downloadUrl: "https://github.com/jaiyankargupta/aac/releases/tag/v1.0.0",
-        viewUrl: "https://github.com/jaiyankargupta/aac/releases/tag/v1.0.0",
-        size: "Folder / Solutions"
+        id: "19Y6MOCUOlHJWusttKHKvgdwmIZjNMkR7",
+        name: "COMPANY ACCOUNTS HW SOLUTIONS.pdf",
+        type: "pdf",
+        downloadUrl: getDirectDownloadLink("19Y6MOCUOlHJWusttKHKvgdwmIZjNMkR7"),
+        viewUrl: getViewLink("19Y6MOCUOlHJWusttKHKvgdwmIZjNMkR7"),
+        size: "Schedule 3 HW Solutions PDF"
       }
     ]
   },
@@ -453,12 +453,12 @@ export const PAPERS_DATA = [
         size: "FM Formula Chart Book"
       },
       {
-        id: "1CH2buSEXd8ghxKhsuTnm29YuEcYQYbDN",
-        name: "HW SOLUTION",
-        type: "folder",
-        downloadUrl: "https://github.com/jaiyankargupta/aac/releases/tag/v1.0.0",
-        viewUrl: "https://github.com/jaiyankargupta/aac/releases/tag/v1.0.0",
-        size: "Folder / HW Solutions"
+        id: "1ZkmBa3iIL_bT2ckV3xDARbtjM83kkzZG",
+        name: "HW SOLUTION (CAPITAL BUDGETING).pdf",
+        type: "pdf",
+        downloadUrl: getDirectDownloadLink("1ZkmBa3iIL_bT2ckV3xDARbtjM83kkzZG"),
+        viewUrl: getViewLink("1ZkmBa3iIL_bT2ckV3xDARbtjM83kkzZG"),
+        size: "Capital Budgeting HW Solution PDF"
       }
     ]
   },
