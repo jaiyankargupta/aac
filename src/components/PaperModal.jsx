@@ -90,14 +90,24 @@ export default function PaperModal({ paper, onClose }) {
                     <span>View</span>
                   </button>
 
-                  <button
-                    onClick={() => triggerDownload(file.downloadUrl)}
+                  <a
+                    href={file.downloadUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="btn-card-primary"
-                    style={{ backgroundColor: paper.color, padding: '0.45rem 1.1rem', fontSize: '0.85rem' }}
+                    style={{
+                      backgroundColor: paper.color,
+                      padding: '0.45rem 1.1rem',
+                      fontSize: '0.85rem',
+                      textDecoration: 'none',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '0.4rem'
+                    }}
                   >
                     <Download size={15} />
                     <span>Download</span>
-                  </button>
+                  </a>
                 </div>
               </div>
             ))}

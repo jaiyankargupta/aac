@@ -2,8 +2,59 @@ export const MAIN_DRIVE_LINK_G1 = "https://drive.google.com/drive/folders/1DMFj0
 export const MAIN_DRIVE_LINK_G2 = "https://drive.google.com/drive/folders/1eQaIew1A5qI-0OHoqKECFhbJAXUgbjp3";
 export const MAIN_DRIVE_LINK = MAIN_DRIVE_LINK_G1;
 
-const getDirectDownloadLink = (id) => `https://drive.usercontent.google.com/download?id=${id}&export=download&confirm=t`;
-const getViewLink = (id) => `https://drive.google.com/file/d/${id}/view`;
+const GITHUB_RELEASE_BASE = "https://github.com/jaiyankargupta/aac/releases/download/v1.0.0";
+
+const FILE_NAME_MAP = {
+  "1LxmsvcyGVcLO-rDN1R30zq7UtsmJTL09": "Business_Law_Ethics_G-1_mb_V-1.pdf",
+  "1dYA3HGm1QQPf-mHLWFRqZ3otEZAW5tR-": "business_law_ethics_mb_vol2.pdf",
+  "1mvZhjQ1Q2zd2mV4v9twnqL93oDIframy": "Law_Ethics_G-1_QB_V-1.pdf",
+  "1jw_qECEcg8fCBGyaGmLQVoB4-9Vj8zfZ": "Law_Ethics_G-1_QB_V-2.pdf",
+  "193NrFJlXIv2Dssf0FYIaDMtkXMbJgk-S": "Law_Ethics_Sarthi.pdf",
+  "1VbH-iJbrH2OF1GmuNhaadoESyTL73ogE": "business_law_ethics_vol_1_(Ongoing).pdf",
+  "1EIgRuZ9suaJV15HqtlGBJBRv1wViBbdg": "business_low_ethics_vol_2_(Ongoing).pdf",
+  "1YTLa6rZW4XqMc5m--Ncw1IQKZIueqYzL": "law_question_bank.pdf",
+  "1kLSIRA7SC5v07hS4Bstkk2O_CHKLQpOb": "Financial_Accounting_Main_V-1.pdf",
+  "1qwWl5yB-1KNqT8jV-LKS9d-30T6uVORM": "Financial_Accounting_Main_V-2.pdf",
+  "1t9OzbXSjURyxa1cXcGAruo7v7n6q0qql": "Financial_Accounting_Main_V-3.pdf",
+  "1ItoPi9VEdUE9TTZhavJLq445kRxCaHTH": "1._DT_MB_V1.pdf",
+  "1-5JJ652930SD7Bx1-mDj0tTExUTi9wpz": "2._DT_MB_V2.pdf",
+  "1Fqv1BNW6p6YSwBp5znvMVxlpu3WFO2U7": "3._DT_QB.pdf",
+  "1t7ySvSguuuf7hvDlsj1fjT6FqJRFsw2h": "4._IDT_MB_V1.pdf",
+  "1C52pr-nWHIXikzic_ky_YzhbiwDvAFqA": "5._IDT_MB_V2.pdf",
+  "1NuxS2XsKKg7Nw7hMM6tsy2hn6JV0GDGt": "6._IDT_QB.pdf",
+  "1mTsjA5gXKeBsFIkMJUvHN3V291sNQKLG": "1._MAIN_BOOK.pdf",
+  "1_MMB1xb1EbAjfsH14KnbNibf26HmBnNb": "2._BUILDING_BLOCKS.pdf",
+  "1J967OMkvOy5sFJiNs7JdW13mI5Hhgbpj": "3._CHART_BOOK.pdf",
+  "1DZM9bQZCb8BXS8SUIYLBTn-DyJR-Isc4": "OM_MB.pdf",
+  "1lBg3T3v_GeUsHmq-RuExR_-_P-qp2cuN": "OM_BUILDING-_BLOCKS.pdf",
+  "1FtXp5PODz4-gigRjpBUda1amW4mVsQL0": "SM_-_MAIN_BOOK_&_CHART_BOOK.pdf",
+  "19Y6MOCUOlHJWusttKHKvgdwmIZjNMkR7": "CORPORATE_-_ACCOUNTING_-_MAIN_BOOK.pdf",
+  "12zTMxkVg82wevBi-twQQ87Q6W0mtpCX4": "AUDIT_MB.pdf",
+  "16YExX3Gb8v183rNxh3lZxlsbZniN_do_": "FM_VOL_1.pdf",
+  "1u9f7C_ivoA6ButYDGT289tioEQpHKqDH": "FM_-_VOLUME_-02.pdf",
+  "12WfoaL0LAE4SCBHp_5gOgbBUgvdE6-I1": "FM_-_BUILDING_-_BLOCKS.pdf",
+  "1ZkmBa3iIL_bT2ckV3xDARbtjM83kkzZG": "2B.CH-08_CAPITAL_BUDGETING.pdf",
+  "10sgTH3j170XtKKw6YURzQirS2cklBnPb": "DA_MB.pdf",
+  "1SJxocc_pqIN3jS2PL3y9hAgIaNCN-Otn": "FM_-_CHART_BOOK.pdf",
+  "1OYtY7P4eO3Caerh4a5m7EBqTNF8Uo-J3": "MANAGEMENT_ACCOUNTING_-_MAIN_BOOK.pdf",
+  "1bRkQepb5rvTt6I-ihRhih8yV_ul6wxFA": "MA_BB.pdf",
+  "1wpLyxD1FMx18dujz0v7a9jQz31r_WCv5": "MA_CHART_BOOK_.pdf",
+  "10QHtA0LiGy2viWQJVNCe9PUECJtEeiS1": "chp-6_learning_curve_.pdf"
+};
+
+const getDirectDownloadLink = (id) => {
+  if (FILE_NAME_MAP[id]) {
+    return `${GITHUB_RELEASE_BASE}/${FILE_NAME_MAP[id]}`;
+  }
+  return `https://drive.usercontent.google.com/download?id=${id}&export=download&confirm=t`;
+};
+
+const getViewLink = (id) => {
+  if (FILE_NAME_MAP[id]) {
+    return `${GITHUB_RELEASE_BASE}/${FILE_NAME_MAP[id]}`;
+  }
+  return `https://drive.google.com/file/d/${id}/view`;
+};
 
 export const PAPERS_DATA = [
   // --- GROUP 1 PAPERS ---

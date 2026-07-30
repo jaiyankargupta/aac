@@ -6,3 +6,8 @@ dist-ssr
 .env
 .env.*
 !.env.example
+
+temp_downloads/
+uploaded_mapping.json
+sync_drive_to_gh_release.py
+
