@@ -92,12 +92,8 @@ function handlePdfProxy(req, res) {
 }
 
 const server = http.createServer((req, res) => {
-  const reqOrigin = req.headers.origin || '';
-  const allowedOrigin = (reqOrigin.endsWith('rustyn.me') || reqOrigin.includes('localhost') || reqOrigin.includes('127.0.0.1'))
-    ? reqOrigin
-    : 'https://aac.rustyn.me';
-
-  res.setHeader('Access-Control-Allow-Origin', allowedOrigin);
+  const reqOrigin = req.headers.origin;
+  res.setHeader('Access-Control-Allow-Origin', reqOrigin || '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, HEAD, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Range');
 
