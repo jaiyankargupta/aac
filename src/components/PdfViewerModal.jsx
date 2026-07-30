@@ -29,46 +29,46 @@ export default function PdfViewerModal({ file, paperColor, onClose }) {
       {/* Fullscreen Header Bar */}
       <div
         style={{
-          height: '64px',
+          height: '60px',
           background: '#0f172a',
           borderBottom: '1px solid rgba(255, 255, 255, 0.15)',
-          padding: '0 1.25rem',
+          padding: '0 0.85rem',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
           color: 'white',
-          gap: '1rem',
+          gap: '0.5rem',
           flexShrink: 0
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', overflow: 'hidden', flex: 1, minWidth: 0 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', overflow: 'hidden', flex: 1, minWidth: 0 }}>
           <button
             onClick={onClose}
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '0.4rem',
+              justifyContent: 'center',
               background: 'rgba(255, 255, 255, 0.12)',
               color: 'white',
               border: '1px solid rgba(255, 255, 255, 0.2)',
-              padding: '0.45rem 0.85rem',
+              padding: '0.45rem 0.65rem',
               borderRadius: 'var(--radius-pill)',
-              fontSize: '0.85rem',
+              fontSize: '0.82rem',
               fontWeight: 600,
               cursor: 'pointer',
               flexShrink: 0
             }}
+            title="Back to Website"
           >
             <ArrowLeft size={16} />
-            <span>Back</span>
           </button>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', overflow: 'hidden', flex: 1, minWidth: 0 }}>
-            <FileText size={20} color={paperColor || '#818cf8'} style={{ flexShrink: 0 }} />
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', overflow: 'hidden', flex: 1, minWidth: 0 }}>
+            <FileText size={18} color={paperColor || '#818cf8'} style={{ flexShrink: 0 }} />
             <div style={{ overflow: 'hidden', flex: 1, minWidth: 0 }}>
               <h2
                 style={{
-                  fontSize: '0.95rem',
+                  fontSize: '0.9rem',
                   fontWeight: 700,
                   color: 'white',
                   whiteSpace: 'nowrap',
@@ -79,15 +79,15 @@ export default function PdfViewerModal({ file, paperColor, onClose }) {
               >
                 {file.name}
               </h2>
-              <span style={{ fontSize: '0.72rem', color: '#94a3b8', display: 'block', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                {file.size || (file.type === 'folder' ? 'Folder Collection' : 'In-App PDF Reader')}
+              <span style={{ fontSize: '0.7rem', color: '#94a3b8', display: 'block', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                {file.size || (file.type === 'folder' ? 'Folder Asset' : 'In-App PDF Reader')}
               </span>
             </div>
           </div>
         </div>
 
         {/* Action Controls */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexShrink: 0 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexShrink: 0 }}>
           <a
             href={pdfUrl}
             target="_blank"
@@ -96,17 +96,18 @@ export default function PdfViewerModal({ file, paperColor, onClose }) {
             className="btn-primary-drive"
             style={{
               backgroundColor: paperColor || '#4f46e5',
-              padding: '0.5rem 1.1rem',
-              fontSize: '0.85rem',
+              padding: '0.45rem 0.85rem',
+              fontSize: '0.8rem',
               boxShadow: '0 4px 14px rgba(79, 70, 229, 0.4)',
               textDecoration: 'none',
               display: 'inline-flex',
               alignItems: 'center',
-              gap: '0.4rem'
+              gap: '0.35rem',
+              borderRadius: 'var(--radius-pill)'
             }}
           >
-            {file.type === 'folder' ? <Folder size={16} /> : <Download size={16} />}
-            <span>{file.type === 'folder' ? 'Open Folder' : 'Download PDF'}</span>
+            {file.type === 'folder' ? <Folder size={15} /> : <Download size={15} />}
+            <span>{file.type === 'folder' ? 'Open Folder' : 'Download'}</span>
           </a>
 
           <button
@@ -115,17 +116,18 @@ export default function PdfViewerModal({ file, paperColor, onClose }) {
               background: 'rgba(255, 255, 255, 0.12)',
               color: 'white',
               borderRadius: '50%',
-              width: '40px',
-              height: '40px',
+              width: '36px',
+              height: '36px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               border: '1px solid rgba(255,255,255,0.2)',
-              cursor: 'pointer'
+              cursor: 'pointer',
+              flexShrink: 0
             }}
             title="Close Reader"
           >
-            <X size={22} />
+            <X size={18} />
           </button>
         </div>
       </div>
