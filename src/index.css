@@ -1,32 +1,32 @@
 :root {
   --font-headline: 'Sora', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-
+  
   --bg-primary: #f8fafc;
   --bg-surface: #ffffff;
   --bg-card: rgba(255, 255, 255, 0.85);
   --bg-glass: rgba(255, 255, 255, 0.7);
   --bg-header: #0f172a;
   --bg-header-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #311b92 100%);
-
+  
   --text-primary: #0f172a;
   --text-secondary: #475569;
   --text-muted: #64748b;
   --text-inverse: #ffffff;
-
+  
   --border-color: #e2e8f0;
   --border-hover: #cbd5e1;
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.03);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.03);
+  --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -1px rgba(0,0,0,0.04);
   --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
-
+  
   --accent-primary: #4f46e5;
   --accent-primary-hover: #4338ca;
   --accent-blue: #2563eb;
   --accent-emerald: #10b981;
   --accent-amber: #f59e0b;
   --accent-rose: #f43f5e;
-
+  
   --radius-sm: 6px;
   --radius-md: 12px;
   --radius-lg: 16px;
@@ -41,17 +41,17 @@
   --bg-glass: rgba(19, 27, 46, 0.75);
   --bg-header: #050811;
   --bg-header-gradient: linear-gradient(135deg, #050811 0%, #0f172a 50%, #1e1b4b 100%);
-
+  
   --text-primary: #f8fafc;
   --text-secondary: #cbd5e1;
   --text-muted: #94a3b8;
   --text-inverse: #ffffff;
-
+  
   --border-color: #1e293b;
   --border-hover: #334155;
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
-  --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.6);
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.4);
+  --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.5);
+  --shadow-lg: 0 10px 25px -5px rgba(0,0,0,0.6);
 }
 
 * {
@@ -72,12 +72,7 @@ body {
   overflow-x: hidden;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-headline);
   font-weight: 700;
   color: var(--text-primary);
@@ -120,12 +115,10 @@ button {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(15, 23, 42, 0.96);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  background: #0f172a;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
   padding: 0.75rem 1.25rem;
-  color: var(--text-inverse);
+  color: #ffffff;
 }
 
 .navbar-inner {
@@ -142,7 +135,7 @@ button {
   align-items: center;
   gap: 0.65rem;
   text-decoration: none;
-  color: white;
+  color: #ffffff;
   flex-shrink: 0;
 }
 
@@ -154,24 +147,24 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: #ffffff;
   box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
   flex-shrink: 0;
 }
 
 .brand-title {
-  font-size: 1.05rem;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
   white-space: nowrap;
 }
 
 .brand-subtitle {
   font-size: 0.7rem;
-  color: #94a3b8;
+  color: #cbd5e1;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -187,10 +180,10 @@ button {
 .search-input {
   width: 100%;
   padding: 0.6rem 1rem 0.6rem 2.5rem;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: var(--radius-pill);
-  color: white;
+  color: #ffffff;
   font-size: 0.88rem;
   outline: none;
   transition: all 0.2s ease;
@@ -201,7 +194,7 @@ button {
 }
 
 .search-input:focus {
-  background: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.2);
   border-color: #818cf8;
   box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.25);
 }
@@ -226,9 +219,9 @@ button {
   width: 36px;
   height: 36px;
   border-radius: var(--radius-pill);
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: #e2e8f0;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -236,7 +229,7 @@ button {
 }
 
 .theme-toggle-btn:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.25);
   color: white;
 }
 
@@ -247,7 +240,7 @@ button {
   gap: 0.45rem;
   padding: 0.55rem 1.1rem;
   background: linear-gradient(135deg, #4f46e5 0%, #3730a3 100%);
-  color: white;
+  color: #ffffff !important;
   font-weight: 600;
   font-size: 0.85rem;
   border-radius: var(--radius-pill);
@@ -521,46 +514,46 @@ button {
   .main-content {
     padding: 1rem 0.85rem 3rem 0.85rem;
   }
-
+  
   .navbar {
     padding: 0.65rem 0.85rem;
+    background: #0f172a !important;
   }
-
+  
   .navbar-inner {
     flex-wrap: wrap;
     gap: 0.6rem;
   }
-
+  
   .search-bar-wrapper {
     order: 3;
     max-width: 100%;
     width: 100%;
     margin-top: 0.25rem;
   }
-
+  
   .search-input {
     font-size: 0.85rem;
     padding: 0.55rem 1rem 0.55rem 2.4rem;
   }
-
+  
   .subject-grid {
     grid-template-columns: 1fr;
     gap: 1.15rem;
   }
-
+  
   .card-actions {
     grid-template-columns: 1fr;
   }
-
+  
   .modal-overlay {
     padding: 0.5rem;
   }
-
-  .modal-header,
-  .modal-body {
+  
+  .modal-header, .modal-body {
     padding: 1rem;
   }
-
+  
   .footer-inner {
     flex-direction: column;
     align-items: flex-start;
@@ -570,24 +563,26 @@ button {
 
 @media (max-width: 480px) {
   .brand-title {
-    font-size: 0.88rem;
-    letter-spacing: -0.02em;
+    font-size: 0.92rem !important;
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    font-weight: 800;
   }
-
+  
   .brand-subtitle {
     display: none;
   }
-
+  
   .btn-primary-drive {
     padding: 0.45rem 0.75rem;
     font-size: 0.78rem;
     border-radius: var(--radius-pill);
   }
-
+  
   .btn-primary-drive span {
     display: inline-block;
   }
-
+  
   .filter-title {
     font-size: 1.2rem;
   }
