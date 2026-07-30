@@ -2,6 +2,9 @@ import https from 'https';
 import http from 'http';
 import { URL } from 'url';
 
+const httpsAgent = new https.Agent({ keepAlive: true, maxSockets: 50, freeSocketTimeout: 30000 });
+const httpAgent = new http.Agent({ keepAlive: true, maxSockets: 50, freeSocketTimeout: 30000 });
+
 export default function handler(req, res) {
   const reqOrigin = req.headers.origin || '';
   const allowedOrigin = (reqOrigin.endsWith('rustyn.me') || reqOrigin.includes('localhost') || reqOrigin.includes('127.0.0.1'))
@@ -39,11 +42,14 @@ export default function handler(req, res) {
   const fetchUrl = (currentUrl, redirectCount = 0) => {
     if (redirectCount > 5) {
       res.statusCode = 508;
-      res.end('Too many redirects');
+      res.setHeader('Content-Type', 'application/json');
+      res.end(JSON.stringify({ error: 'Too many redirects' }));
       return;
     }
 
-    const client = currentUrl.startsWith('https') ? https : http;
+    const isHttps = currentUrl.startsWith('https');
+    const client = isHttps ? https : http;
+    const agent = isHttps ? httpsAgent : httpAgent;
     const headers = {
       'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)'
     };
@@ -52,7 +58,7 @@ export default function handler(req, res) {
       headers['Range'] = req.headers.range;
     }
 
-    client.get(currentUrl, { headers }, (targetRes) => {
+    client.get(currentUrl, { headers, agent }, (targetRes) => {
       if (targetRes.statusCode >= 300 && targetRes.statusCode < 400 && targetRes.headers.location) {
         fetchUrl(targetRes.headers.location, redirectCount + 1);
         return;

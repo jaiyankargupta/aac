@@ -6,6 +6,8 @@ import Footer from './components/Footer';
 import { PAPERS_DATA } from './data/papers';
 import { BookOpen } from 'lucide-react';
 
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "https://aac-ue14.onrender.com";
+
 export default function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState('ALL');
@@ -18,6 +20,13 @@ export default function App() {
     const savedTheme = localStorage.getItem('app_theme');
     return savedTheme === 'dark';
   });
+
+  // Silent background warm-up ping on website load
+  useEffect(() => {
+    fetch(`${BACKEND_URL}/health`, { mode: 'cors' })
+      .then(res => res.json())
+      .catch(() => { });
+  }, []);
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');

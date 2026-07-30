@@ -5,6 +5,9 @@ import { URL } from 'url';
 const PORT = process.env.PORT || 3000;
 const ALLOWED_ORIGIN = process.env.ALLOWED_ORIGIN || 'https://aac.rustyn.me';
 
+const httpsAgent = new https.Agent({ keepAlive: true, maxSockets: 50, freeSocketTimeout: 30000 });
+const httpAgent = new http.Agent({ keepAlive: true, maxSockets: 50, freeSocketTimeout: 30000 });
+
 function handlePdfProxy(req, res) {
   const reqOrigin = req.headers.origin || '';
   const allowedOrigin = (reqOrigin.endsWith('rustyn.me') || reqOrigin.includes('localhost'))
@@ -40,7 +43,10 @@ function handlePdfProxy(req, res) {
       return;
     }
 
-    const client = currentUrl.startsWith('https') ? https : http;
+    const isHttps = currentUrl.startsWith('https');
+    const client = isHttps ? https : http;
+    const agent = isHttps ? httpsAgent : httpAgent;
+
     const headers = {
       'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)'
     };
@@ -49,7 +55,7 @@ function handlePdfProxy(req, res) {
       headers['Range'] = req.headers.range;
     }
 
-    client.get(currentUrl, { headers }, (targetRes) => {
+    client.get(currentUrl, { headers, agent }, (targetRes) => {
       if (targetRes.statusCode >= 300 && targetRes.statusCode < 400 && targetRes.headers.location) {
         fetchUrl(targetRes.headers.location, redirectCount + 1);
         return;

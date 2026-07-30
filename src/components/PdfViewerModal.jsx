@@ -7,25 +7,8 @@ const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "https://aac-ue14.onrend
 export default function PdfViewerModal({ file, paperColor, onClose }) {
   if (!file) return null;
 
-  const [isWarmingUp, setIsWarmingUp] = useState(true);
   const pdfUrl = file.downloadUrl;
   const proxyViewerUrl = `${BACKEND_URL}/api/pdf-proxy?url=${encodeURIComponent(pdfUrl)}`;
-
-  useEffect(() => {
-    let active = true;
-    // Quick health ping to warm up server if Render is sleeping
-    fetch(`${BACKEND_URL}/health`)
-      .then(res => res.json())
-      .then(() => {
-        if (active) setIsWarmingUp(false);
-      })
-      .catch(() => {
-        // Continue even if health check fails
-        if (active) setIsWarmingUp(false);
-      });
-
-    return () => { active = false; };
-  }, []);
 
   const modalJSX = (
     <div
@@ -58,7 +41,7 @@ export default function PdfViewerModal({ file, paperColor, onClose }) {
           flexShrink: 0
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', overflow: 'hidden' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', overflow: 'hidden', flex: 1, minWidth: 0 }}>
           <button
             onClick={onClose}
             style={{
@@ -72,19 +55,20 @@ export default function PdfViewerModal({ file, paperColor, onClose }) {
               borderRadius: 'var(--radius-pill)',
               fontSize: '0.85rem',
               fontWeight: 600,
-              cursor: 'pointer'
+              cursor: 'pointer',
+              flexShrink: 0
             }}
           >
             <ArrowLeft size={16} />
-            <span>Back to Website</span>
+            <span>Back</span>
           </button>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', overflow: 'hidden' }}>
-            <FileText size={22} color={paperColor || '#818cf8'} style={{ flexShrink: 0 }} />
-            <div style={{ overflow: 'hidden' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', overflow: 'hidden', flex: 1, minWidth: 0 }}>
+            <FileText size={20} color={paperColor || '#818cf8'} style={{ flexShrink: 0 }} />
+            <div style={{ overflow: 'hidden', flex: 1, minWidth: 0 }}>
               <h2
                 style={{
-                  fontSize: '1rem',
+                  fontSize: '0.95rem',
                   fontWeight: 700,
                   color: 'white',
                   whiteSpace: 'nowrap',
@@ -95,8 +79,8 @@ export default function PdfViewerModal({ file, paperColor, onClose }) {
               >
                 {file.name}
               </h2>
-              <span style={{ fontSize: '0.72rem', color: '#94a3b8' }}>
-                {file.size || 'In-App Document Reader'}
+              <span style={{ fontSize: '0.72rem', color: '#94a3b8', display: 'block', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                {file.size || (file.type === 'folder' ? 'Folder Collection' : 'In-App PDF Reader')}
               </span>
             </div>
           </div>
@@ -108,12 +92,12 @@ export default function PdfViewerModal({ file, paperColor, onClose }) {
             href={pdfUrl}
             target="_blank"
             rel="noopener noreferrer"
-            download={file.name}
+            download={file.type === 'folder' ? undefined : file.name}
             className="btn-primary-drive"
             style={{
               backgroundColor: paperColor || '#4f46e5',
-              padding: '0.5rem 1.25rem',
-              fontSize: '0.88rem',
+              padding: '0.5rem 1.1rem',
+              fontSize: '0.85rem',
               boxShadow: '0 4px 14px rgba(79, 70, 229, 0.4)',
               textDecoration: 'none',
               display: 'inline-flex',
@@ -121,8 +105,8 @@ export default function PdfViewerModal({ file, paperColor, onClose }) {
               gap: '0.4rem'
             }}
           >
-            <Download size={16} />
-            <span>Download PDF</span>
+            {file.type === 'folder' ? <Folder size={16} /> : <Download size={16} />}
+            <span>{file.type === 'folder' ? 'Open Folder' : 'Download PDF'}</span>
           </a>
 
           <button
@@ -200,11 +184,6 @@ export default function PdfViewerModal({ file, paperColor, onClose }) {
                 <span>Open Folder Resources</span>
               </a>
             </div>
-          </div>
-        ) : isWarmingUp ? (
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', color: '#fff' }}>
-            <Loader2 size={36} style={{ animation: 'spin 1s linear infinite', marginBottom: '1rem', color: paperColor || '#818cf8' }} />
-            <p style={{ fontSize: '0.95rem', fontWeight: 600 }}>⚡ Connecting to High-Speed PDF Server...</p>
           </div>
         ) : (
           <iframe
