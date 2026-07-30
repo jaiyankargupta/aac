@@ -61,10 +61,14 @@ function handlePdfProxy(req, res) {
       }
 
       res.statusCode = targetRes.statusCode || 200;
+
+      // Force PDF MIME type and inline disposition to prevent Chrome PDF viewer errors
+      res.removeHeader('Content-Disposition');
+      res.removeHeader('Content-Type');
       res.setHeader('Content-Type', 'application/pdf');
       res.setHeader('Content-Disposition', 'inline');
       res.setHeader('Accept-Ranges', 'bytes');
-      res.setHeader('Cache-Control', 'public, max-age=3600');
+      res.setHeader('Cache-Control', 'public, max-age=86400, s-maxage=86400, immutable');
 
       if (targetRes.headers['content-range']) {
         res.setHeader('Content-Range', targetRes.headers['content-range']);
