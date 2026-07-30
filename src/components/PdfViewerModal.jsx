@@ -1,12 +1,29 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { X, Download, FileText, ArrowLeft } from 'lucide-react';
+import { X, Download, FileText, ArrowLeft, Loader2 } from 'lucide-react';
 
 export default function PdfViewerModal({ file, paperColor, onClose }) {
   if (!file) return null;
 
+  const [isWarmingUp, setIsWarmingUp] = useState(true);
   const pdfUrl = file.downloadUrl;
   const proxyViewerUrl = `/api/pdf-proxy?url=${encodeURIComponent(pdfUrl)}`;
+
+  useEffect(() => {
+    let active = true;
+    // Quick health ping to warm up server if Render is sleeping
+    fetch('/api/pdf-proxy?health=1')
+      .then(res => res.json())
+      .then(() => {
+        if (active) setIsWarmingUp(false);
+      })
+      .catch(() => {
+        // Continue even if health check fails
+        if (active) setIsWarmingUp(false);
+      });
+
+    return () => { active = false; };
+  }, []);
 
   const modalJSX = (
     <div
@@ -128,17 +145,24 @@ export default function PdfViewerModal({ file, paperColor, onClose }) {
       </div>
 
       {/* Main Fullscreen Viewer Section - Native Inline PDF Reader */}
-      <div style={{ flex: 1, width: '100%', height: 'calc(100vh - 64px)', background: '#000000' }}>
-        <iframe
-          src={proxyViewerUrl}
-          title={file.name}
-          style={{
-            width: '100%',
-            height: '100%',
-            border: 'none',
-            display: 'block'
-          }}
-        />
+      <div style={{ flex: 1, width: '100%', height: 'calc(100vh - 64px)', background: '#000000', position: 'relative' }}>
+        {isWarmingUp ? (
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', color: '#fff' }}>
+            <Loader2 size={36} style={{ animation: 'spin 1s linear infinite', marginBottom: '1rem', color: paperColor || '#818cf8' }} />
+            <p style={{ fontSize: '0.95rem', fontWeight: 600 }}>⚡ Connecting to High-Speed PDF Server...</p>
+          </div>
+        ) : (
+          <iframe
+            src={proxyViewerUrl}
+            title={file.name}
+            style={{
+              width: '100%',
+              height: '100%',
+              border: 'none',
+              display: 'block'
+            }}
+          />
+        )}
       </div>
     </div>
   );

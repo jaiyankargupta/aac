@@ -4,11 +4,20 @@ import { URL } from 'url';
 
 export default function handler(req, res) {
   const reqUrl = new URL(req.url, `https://${req.headers.host || 'aac.rustyn.me'}`);
+
+  if (reqUrl.searchParams.get('health') === '1' || req.url === '/health') {
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify({ status: 'ok', domain: 'https://aac.rustyn.me' }));
+    return;
+  }
+
   const targetUrl = reqUrl.searchParams.get('url');
 
   if (!targetUrl) {
     res.statusCode = 400;
-    res.end('Missing url parameter');
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify({ error: 'Missing url parameter' }));
     return;
   }
 
