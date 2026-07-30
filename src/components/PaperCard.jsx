@@ -170,14 +170,14 @@ export default function PaperCard({ paper, onSelectPaper, isFavorite, onToggleFa
 
         <div className="card-actions">
           <a
-            href={paper.folderUrl}
+            href="https://github.com/jaiyankargupta/aac/releases/tag/v1.0.0"
             target="_blank"
             rel="noopener noreferrer"
             className="btn-card-primary"
             style={{ backgroundColor: paper.color }}
           >
             <ExternalLink size={16} />
-            <span>Open Drive Folder</span>
+            <span>GitHub Release CDN</span>
           </a>
 
           <button

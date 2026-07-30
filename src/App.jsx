@@ -148,10 +148,10 @@ export default function App() {
             }}
           >
             <h3 style={{ fontSize: '1.2rem', marginBottom: '0.4rem' }}>
-              Group 1 Google Drive Folder
+              Group 1 High-Speed CDN Catalog
             </h3>
             <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginBottom: '1.25rem' }}>
-              Direct access to Paper 5 (Laws), Paper 6 (Acc), Paper 7 (Taxation), and Paper 8 (Costing).
+              Direct 1-click access to Paper 5 (Laws), Paper 6 (Acc), Paper 7 (Taxation), and Paper 8 (Costing).
             </p>
             <a
               href={MAIN_DRIVE_LINK_G1}
@@ -161,7 +161,7 @@ export default function App() {
               style={{ backgroundColor: '#2563eb', width: '100%', justifyContent: 'center' }}
             >
               <ExternalLink size={18} />
-              <span>Launch Group 1 Drive</span>
+              <span>Launch Group 1 CDN Assets</span>
             </a>
           </div>
 
@@ -175,10 +175,10 @@ export default function App() {
             }}
           >
             <h3 style={{ fontSize: '1.2rem', marginBottom: '0.4rem' }}>
-              Group 2 Google Drive Folder
+              Group 2 High-Speed CDN Catalog
             </h3>
             <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginBottom: '1.25rem' }}>
-              Direct access to Paper 9 (OM SM), Paper 10 (Co Acc Audit), Paper 11 (FM DA), and Paper 12 (MA).
+              Direct 1-click access to Paper 9 (OM SM), Paper 10 (Co Acc Audit), Paper 11 (FM DA), and Paper 12 (MA).
             </p>
             <a
               href={MAIN_DRIVE_LINK_G2}
@@ -188,7 +188,7 @@ export default function App() {
               style={{ backgroundColor: '#8b5cf6', width: '100%', justifyContent: 'center' }}
             >
               <ExternalLink size={18} />
-              <span>Launch Group 2 Drive</span>
+              <span>Launch Group 2 CDN Assets</span>
             </a>
           </div>
         </div>

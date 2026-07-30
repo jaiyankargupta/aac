@@ -1,6 +1,7 @@
-export const MAIN_DRIVE_LINK_G1 = "https://drive.google.com/drive/folders/1DMFj0o2kq65l16kpiGW0dfqJ-_IVX1pw";
-export const MAIN_DRIVE_LINK_G2 = "https://drive.google.com/drive/folders/1eQaIew1A5qI-0OHoqKECFhbJAXUgbjp3";
-export const MAIN_DRIVE_LINK = MAIN_DRIVE_LINK_G1;
+export const GITHUB_RELEASE_URL = "https://github.com/jaiyankargupta/aac/releases/tag/v1.0.0";
+export const MAIN_DRIVE_LINK_G1 = GITHUB_RELEASE_URL;
+export const MAIN_DRIVE_LINK_G2 = GITHUB_RELEASE_URL;
+export const MAIN_DRIVE_LINK = GITHUB_RELEASE_URL;
 
 const GITHUB_RELEASE_BASE = "https://github.com/jaiyankargupta/aac/releases/download/v1.0.0";
 
@@ -43,17 +44,13 @@ const FILE_NAME_MAP = {
 };
 
 const getDirectDownloadLink = (id) => {
-  if (FILE_NAME_MAP[id]) {
-    return `${GITHUB_RELEASE_BASE}/${FILE_NAME_MAP[id]}`;
-  }
-  return `https://drive.usercontent.google.com/download?id=${id}&export=download&confirm=t`;
+  const fileName = FILE_NAME_MAP[id] || `${id}.pdf`;
+  return `${GITHUB_RELEASE_BASE}/${fileName}`;
 };
 
 const getViewLink = (id) => {
-  if (FILE_NAME_MAP[id]) {
-    return `${GITHUB_RELEASE_BASE}/${FILE_NAME_MAP[id]}`;
-  }
-  return `https://drive.google.com/file/d/${id}/view`;
+  const fileName = FILE_NAME_MAP[id] || `${id}.pdf`;
+  return `${GITHUB_RELEASE_BASE}/${fileName}`;
 };
 
 export const PAPERS_DATA = [

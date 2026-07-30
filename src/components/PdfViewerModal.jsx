@@ -1,35 +1,10 @@
-import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { X, Download, FileText, ArrowLeft, ExternalLink, RefreshCw, AlertTriangle } from 'lucide-react';
+import { X, Download, FileText, ArrowLeft, ExternalLink } from 'lucide-react';
 
 export default function PdfViewerModal({ file, paperColor, onClose }) {
   if (!file) return null;
 
-  const [viewerMode, setViewerMode] = useState('embed'); // 'embed' | 'stream'
-  const [downloadTriggered, setDownloadTriggered] = useState(false);
-
-  const isFolder = file.type === 'folder';
-  const previewUrl = isFolder ? file.viewUrl : `https://drive.google.com/file/d/${file.id}/preview`;
-  const driveViewUrl = file.viewUrl || `https://drive.google.com/file/d/${file.id}/view`;
-
-  const triggerAutoDownload = () => {
-    const link = document.createElement('a');
-    link.href = file.downloadUrl;
-    link.target = '_blank';
-    link.rel = 'noopener noreferrer';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    setDownloadTriggered(true);
-  };
-
-  // Automatically trigger download if Drive embedded preview is not allowed or for large files
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      triggerAutoDownload();
-    }, 400);
-    return () => clearTimeout(timer);
-  }, [file.id]);
+  const pdfUrl = file.downloadUrl;
 
   const modalJSX = (
     <div
@@ -100,49 +75,33 @@ export default function PdfViewerModal({ file, paperColor, onClose }) {
                 {file.name}
               </h2>
               <span style={{ fontSize: '0.72rem', color: '#94a3b8' }}>
-                {file.size || 'In-App Reader'} {downloadTriggered ? '• Download Started Automatically' : ''}
+                {file.size || 'Direct PDF Document'}
               </span>
             </div>
           </div>
         </div>
 
-        {/* Action Controls & Mode Switcher */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', flexShrink: 0 }}>
-          <button
-            onClick={triggerAutoDownload}
+        {/* Action Controls */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexShrink: 0 }}>
+          <a
+            href={pdfUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            download={file.name}
             className="btn-primary-drive"
             style={{
               backgroundColor: paperColor || '#4f46e5',
-              padding: '0.5rem 1.1rem',
-              fontSize: '0.85rem',
+              padding: '0.5rem 1.25rem',
+              fontSize: '0.88rem',
               boxShadow: '0 4px 14px rgba(79, 70, 229, 0.4)',
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.4rem'
-            }}
-          >
-            <Download size={15} />
-            <span>Auto-Download & View</span>
-          </button>
-
-          <a
-            href={driveViewUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-card-outline"
-            style={{
-              borderColor: 'rgba(255, 255, 255, 0.25)',
-              color: '#e2e8f0',
-              padding: '0.5rem 0.9rem',
-              fontSize: '0.83rem',
               textDecoration: 'none',
               display: 'inline-flex',
               alignItems: 'center',
               gap: '0.4rem'
             }}
           >
-            <ExternalLink size={14} />
-            <span>Open in Google Drive</span>
+            <Download size={16} />
+            <span>Direct Download PDF</span>
           </a>
 
           <button
@@ -166,72 +125,18 @@ export default function PdfViewerModal({ file, paperColor, onClose }) {
         </div>
       </div>
 
-      {/* Helpful Auto-Download & Drive Fallback Banner */}
-      <div
-        style={{
-          background: 'linear-gradient(90deg, #1e293b 0%, #0f172a 100%)',
-          borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
-          padding: '0.45rem 1.25rem',
-          fontSize: '0.8rem',
-          color: '#e2e8f0',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          gap: '0.75rem',
-          flexWrap: 'wrap'
-        }}
-      >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          <AlertTriangle size={16} color="#f59e0b" style={{ flexShrink: 0 }} />
-          <span>
-            If Google Drive says <strong>"This file is too large to preview"</strong>, the browser auto-download was triggered above. Click <strong>"Auto-Download & View"</strong> or <strong>"Open in Google Drive"</strong> anytime!
-          </span>
-        </div>
-
-        <div style={{ display: 'flex', gap: '0.4rem' }}>
-          <button
-            onClick={() => setViewerMode(viewerMode === 'embed' ? 'stream' : 'embed')}
-            style={{
-              background: 'rgba(255,255,255,0.1)',
-              border: '1px solid rgba(255,255,255,0.2)',
-              color: 'white',
-              padding: '0.2rem 0.6rem',
-              borderRadius: '4px',
-              fontSize: '0.75rem',
-              cursor: 'pointer'
-            }}
-          >
-            Switch View Mode ({viewerMode === 'embed' ? 'Drive Embed' : 'Direct Stream'})
-          </button>
-        </div>
-      </div>
-
       {/* Main Fullscreen Viewer Section */}
-      <div style={{ flex: 1, width: '100%', height: 'calc(100vh - 104px)', background: '#000000', position: 'relative' }}>
-        {viewerMode === 'embed' ? (
-          <iframe
-            src={previewUrl}
-            title={file.name}
-            style={{
-              width: '100%',
-              height: '100%',
-              border: 'none',
-              display: 'block'
-            }}
-            allow="autoplay; fullscreen"
-          />
-        ) : (
-          <iframe
-            src={file.downloadUrl}
-            title={file.name}
-            style={{
-              width: '100%',
-              height: '100%',
-              border: 'none',
-              display: 'block'
-            }}
-          />
-        )}
+      <div style={{ flex: 1, width: '100%', height: 'calc(100vh - 64px)', background: '#000000' }}>
+        <iframe
+          src={pdfUrl}
+          title={file.name}
+          style={{
+            width: '100%',
+            height: '100%',
+            border: 'none',
+            display: 'block'
+          }}
+        />
       </div>
     </div>
   );

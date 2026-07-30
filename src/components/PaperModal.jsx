@@ -119,14 +119,14 @@ export default function PaperModal({ paper, onClose }) {
             </button>
 
             <a
-              href={paper.folderUrl}
+              href="https://github.com/jaiyankargupta/aac/releases/tag/v1.0.0"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-card-primary"
               style={{ backgroundColor: paper.color, padding: '0.7rem 1.4rem' }}
             >
               <ExternalLink size={18} />
-              <span>Open Drive Folder</span>
+              <span>GitHub Release CDN</span>
             </a>
           </div>
         </div>
