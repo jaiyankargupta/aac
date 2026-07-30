@@ -23,7 +23,7 @@ export default function App() {
 
   // Silent background warm-up ping on website load
   useEffect(() => {
-    fetch(`${BACKEND_URL}/health`, { mode: 'cors' })
+    fetch('/api/pdf-proxy?health=1')
       .then(res => res.json())
       .catch(() => { });
   }, []);
