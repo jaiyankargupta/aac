@@ -3,8 +3,8 @@ import Header from './components/Header';
 import PaperCard from './components/PaperCard';
 import PaperModal from './components/PaperModal';
 import Footer from './components/Footer';
-import { PAPERS_DATA, MAIN_DRIVE_LINK_G1, MAIN_DRIVE_LINK_G2 } from './data/papers';
-import { ExternalLink, BookOpen } from 'lucide-react';
+import { PAPERS_DATA } from './data/papers';
+import { BookOpen } from 'lucide-react';
 
 export default function App() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -128,70 +128,6 @@ export default function App() {
             </button>
           </div>
         )}
-
-        {/* Quick Launch Callout for G1 and G2 */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-            gap: '1.5rem',
-            marginBottom: '3rem'
-          }}
-        >
-          <div
-            className="glass-panel"
-            style={{
-              padding: '1.75rem',
-              borderRadius: 'var(--radius-xl)',
-              background: 'linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(59, 130, 246, 0.05) 100%)',
-              borderColor: 'rgba(37, 99, 235, 0.2)'
-            }}
-          >
-            <h3 style={{ fontSize: '1.2rem', marginBottom: '0.4rem' }}>
-              Group 1 High-Speed CDN Catalog
-            </h3>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginBottom: '1.25rem' }}>
-              Direct 1-click access to Paper 5 (Laws), Paper 6 (Acc), Paper 7 (Taxation), and Paper 8 (Costing).
-            </p>
-            <a
-              href={MAIN_DRIVE_LINK_G1}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary-drive"
-              style={{ backgroundColor: '#2563eb', width: '100%', justifyContent: 'center' }}
-            >
-              <ExternalLink size={18} />
-              <span>Launch Group 1 CDN Assets</span>
-            </a>
-          </div>
-
-          <div
-            className="glass-panel"
-            style={{
-              padding: '1.75rem',
-              borderRadius: 'var(--radius-xl)',
-              background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(167, 139, 250, 0.05) 100%)',
-              borderColor: 'rgba(139, 92, 246, 0.2)'
-            }}
-          >
-            <h3 style={{ fontSize: '1.2rem', marginBottom: '0.4rem' }}>
-              Group 2 High-Speed CDN Catalog
-            </h3>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginBottom: '1.25rem' }}>
-              Direct 1-click access to Paper 9 (OM SM), Paper 10 (Co Acc Audit), Paper 11 (FM DA), and Paper 12 (MA).
-            </p>
-            <a
-              href={MAIN_DRIVE_LINK_G2}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary-drive"
-              style={{ backgroundColor: '#8b5cf6', width: '100%', justifyContent: 'center' }}
-            >
-              <ExternalLink size={18} />
-              <span>Launch Group 2 CDN Assets</span>
-            </a>
-          </div>
-        </div>
       </main>
 
       <PaperModal

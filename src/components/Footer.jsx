@@ -1,6 +1,5 @@
 import React from 'react';
-import { BookOpen, ExternalLink, Heart } from 'lucide-react';
-import { MAIN_DRIVE_LINK } from '../data/papers';
+import { BookOpen, Heart } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -12,11 +11,6 @@ export default function Footer() {
         </div>
 
         <ul className="footer-links">
-          <li>
-            <a href={MAIN_DRIVE_LINK} target="_blank" rel="noopener noreferrer">
-              Google Drive Link <ExternalLink size={12} style={{ display: 'inline', marginLeft: '2px' }} />
-            </a>
-          </li>
           <li><a href="#subject-papers">Paper 5 (Laws)</a></li>
           <li><a href="#subject-papers">Paper 6 (Financial Acc)</a></li>
           <li><a href="#subject-papers">Paper 7 (Taxation)</a></li>

@@ -142,7 +142,7 @@ export default function PaperCard({ paper, onSelectPaper, isFavorite, onToggleFa
                     justifyContent: 'center',
                     borderRadius: 'var(--radius-sm)'
                   }}
-                  title="View PDF Fullscreen"
+                  title="View PDF In-App"
                 >
                   <Eye size={14} />
                   <span>View</span>
@@ -169,22 +169,12 @@ export default function PaperCard({ paper, onSelectPaper, isFavorite, onToggleFa
         </div>
 
         <div className="card-actions">
-          <a
-            href="https://github.com/jaiyankargupta/aac/releases/tag/v1.0.0"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-card-primary"
-            style={{ backgroundColor: paper.color }}
-          >
-            <ExternalLink size={16} />
-            <span>GitHub Release CDN</span>
-          </a>
-
           <button
             onClick={() => onSelectPaper(paper)}
             className="btn-card-outline"
+            style={{ width: '100%', justifyContent: 'center' }}
           >
-            <span>Full Overview</span>
+            <span>Full Overview & Materials</span>
           </button>
         </div>
       </div>

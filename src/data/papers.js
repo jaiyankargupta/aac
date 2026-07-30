@@ -48,10 +48,7 @@ const getDirectDownloadLink = (id) => {
   return `${GITHUB_RELEASE_BASE}/${fileName}`;
 };
 
-const getViewLink = (id) => {
-  const fileName = FILE_NAME_MAP[id] || `${id}.pdf`;
-  return `${GITHUB_RELEASE_BASE}/${fileName}`;
-};
+const getViewLink = (id) => getDirectDownloadLink(id);
 
 export const PAPERS_DATA = [
   // --- GROUP 1 PAPERS ---
@@ -65,7 +62,7 @@ export const PAPERS_DATA = [
     color: "#2563eb",
     bgGradient: "linear-gradient(135deg, rgba(37, 99, 235, 0.08) 0%, rgba(59, 130, 246, 0.02) 100%)",
     iconName: "Scale",
-    folderUrl: "https://drive.google.com/drive/folders/1TJBGD0VP4Awkvp59CBLck_Kd4mMPLbuI",
+    folderUrl: "https://github.com/jaiyankargupta/aac/releases/tag/v1.0.0",
     badgeText: "REC Special Batch",
     description: "Complete batch notes and lectures for Commercial, Corporate & Industrial Laws.",
     files: [
@@ -145,7 +142,7 @@ export const PAPERS_DATA = [
     color: "#10b981",
     bgGradient: "linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(52, 211, 153, 0.02) 100%)",
     iconName: "Calculator",
-    folderUrl: "https://drive.google.com/drive/folders/1WQHQqd7jK7_Ir5yM_Ogc_-Xcrd5Ke624",
+    folderUrl: "https://github.com/jaiyankargupta/aac/releases/tag/v1.0.0",
     badgeText: "Full Volume Books",
     description: "Financial Accounting Main Volumes 1, 2, 3 PDF Books & Complete Problem Solutions.",
     files: [
@@ -177,8 +174,8 @@ export const PAPERS_DATA = [
         id: "1GBuEKW5ONRqGuxmqY4oSxtZ1ronYVXj6",
         name: "SOLUTIONS & PRACTICE SETS",
         type: "folder",
-        downloadUrl: "https://drive.google.com/drive/folders/1GBuEKW5ONRqGuxmqY4oSxtZ1ronYVXj6",
-        viewUrl: "https://drive.google.com/drive/folders/1GBuEKW5ONRqGuxmqY4oSxtZ1ronYVXj6",
+        downloadUrl: "https://github.com/jaiyankargupta/aac/releases/tag/v1.0.0",
+        viewUrl: "https://github.com/jaiyankargupta/aac/releases/tag/v1.0.0",
         size: "Folder / Solutions"
       }
     ]
@@ -193,7 +190,7 @@ export const PAPERS_DATA = [
     color: "#f59e0b",
     bgGradient: "linear-gradient(135deg, rgba(245, 158, 11, 0.08) 0%, rgba(251, 191, 36, 0.02) 100%)",
     iconName: "Receipt",
-    folderUrl: "https://drive.google.com/drive/folders/1agjqF-nIhkpp3E8Ym6IsjwPCcgFyZmHk",
+    folderUrl: "https://github.com/jaiyankargupta/aac/releases/tag/v1.0.0",
     badgeText: "DT + IDT Question Bank",
     description: "Direct Tax Modules (V1, V2, QB) & Indirect Tax (GST) Modules (V1, V2, QB) PDFs.",
     files: [
@@ -249,16 +246,16 @@ export const PAPERS_DATA = [
         id: "1w4_K8_5LbuNjAxEMuaXHOfb1rFefuWLG",
         name: "EXAMPLE & HW QUESTIONS",
         type: "folder",
-        downloadUrl: "https://drive.google.com/drive/folders/1w4_K8_5LbuNjAxEMuaXHOfb1rFefuWLG",
-        viewUrl: "https://drive.google.com/drive/folders/1w4_K8_5LbuNjAxEMuaXHOfb1rFefuWLG",
+        downloadUrl: "https://github.com/jaiyankargupta/aac/releases/tag/v1.0.0",
+        viewUrl: "https://github.com/jaiyankargupta/aac/releases/tag/v1.0.0",
         size: "Folder / Practice"
       },
       {
         id: "1CDrvdME5EAKr0DyhZEdFN0ICZI-twoAU",
         name: "EXTRA FILES & AMENDMENTS",
         type: "folder",
-        downloadUrl: "https://drive.google.com/drive/folders/1CDrvdME5EAKr0DyhZEdFN0ICZI-twoAU",
-        viewUrl: "https://drive.google.com/drive/folders/1CDrvdME5EAKr0DyhZEdFN0ICZI-twoAU",
+        downloadUrl: "https://github.com/jaiyankargupta/aac/releases/tag/v1.0.0",
+        viewUrl: "https://github.com/jaiyankargupta/aac/releases/tag/v1.0.0",
         size: "Folder / Amendments"
       }
     ]
@@ -273,7 +270,7 @@ export const PAPERS_DATA = [
     color: "#f43f5e",
     bgGradient: "linear-gradient(135deg, rgba(244, 63, 94, 0.08) 0%, rgba(251, 113, 133, 0.02) 100%)",
     iconName: "PieChart",
-    folderUrl: "https://drive.google.com/drive/folders/1cGto31ORgU9hVEtRPDIaQgpgtowg9hZQ",
+    folderUrl: "https://github.com/jaiyankargupta/aac/releases/tag/v1.0.0",
     badgeText: "Main Book + Chart Book",
     description: "Costing Main Book, Building Blocks PDF, and Formula Chart Book.",
     files: [
@@ -305,8 +302,8 @@ export const PAPERS_DATA = [
         id: "1FuVvb3r0_UBhm3V5VFXYlfSeCaoqNhvx",
         name: "EXTRA FILES",
         type: "folder",
-        downloadUrl: "https://drive.google.com/drive/folders/1FuVvb3r0_UBhm3V5VFXYlfSeCaoqNhvx",
-        viewUrl: "https://drive.google.com/drive/folders/1FuVvb3r0_UBhm3V5VFXYlfSeCaoqNhvx",
+        downloadUrl: "https://github.com/jaiyankargupta/aac/releases/tag/v1.0.0",
+        viewUrl: "https://github.com/jaiyankargupta/aac/releases/tag/v1.0.0",
         size: "Folder / Practice"
       }
     ]
@@ -323,7 +320,7 @@ export const PAPERS_DATA = [
     color: "#8b5cf6", // Purple accent
     bgGradient: "linear-gradient(135deg, rgba(139, 92, 246, 0.08) 0%, rgba(167, 139, 250, 0.02) 100%)",
     iconName: "Boxes",
-    folderUrl: "https://drive.google.com/drive/folders/1M4F9kWvG0GJpBnizoM8xpeLmzR_GakBZ",
+    folderUrl: "https://github.com/jaiyankargupta/aac/releases/tag/v1.0.0",
     badgeText: "Group 2 Core",
     description: "Operations Management Main Book, Building Blocks & Strategic Management Chart Book.",
     files: [
@@ -363,7 +360,7 @@ export const PAPERS_DATA = [
     color: "#ec4899", // Pink accent
     bgGradient: "linear-gradient(135deg, rgba(236, 72, 153, 0.08) 0%, rgba(244, 114, 182, 0.02) 100%)",
     iconName: "FileCheck",
-    folderUrl: "https://drive.google.com/drive/folders/14CVRTVdt08nQtTfhdz2j5kee24AG5Z__",
+    folderUrl: "https://github.com/jaiyankargupta/aac/releases/tag/v1.0.0",
     badgeText: "Group 2 Core",
     description: "Corporate Accounting Main Book, Schedule III Solutions, and Auditing Main Book.",
     files: [
@@ -387,8 +384,8 @@ export const PAPERS_DATA = [
         id: "1wseXO86hEkXyCpZOwpd4YJJZWXXorBzM",
         name: "COMPANY ACCOUNTS SCHEDULE 3 HW SOLUTIONS",
         type: "folder",
-        downloadUrl: "https://drive.google.com/drive/folders/1wseXO86hEkXyCpZOwpd4YJJZWXXorBzM",
-        viewUrl: "https://drive.google.com/drive/folders/1wseXO86hEkXyCpZOwpd4YJJZWXXorBzM",
+        downloadUrl: "https://github.com/jaiyankargupta/aac/releases/tag/v1.0.0",
+        viewUrl: "https://github.com/jaiyankargupta/aac/releases/tag/v1.0.0",
         size: "Folder / Solutions"
       }
     ]
@@ -403,7 +400,7 @@ export const PAPERS_DATA = [
     color: "#06b6d4", // Cyan accent
     bgGradient: "linear-gradient(135deg, rgba(6, 182, 212, 0.08) 0%, rgba(34, 211, 238, 0.02) 100%)",
     iconName: "TrendingUp",
-    folderUrl: "https://drive.google.com/drive/folders/12Z-Uf-t84IV_X9IOoERG2o0dmRqVjRQc",
+    folderUrl: "https://github.com/jaiyankargupta/aac/releases/tag/v1.0.0",
     badgeText: "Group 2 Core",
     description: "Financial Management Vol 1, Vol 2, Capital Budgeting, Data Analytics MB & Chart Book.",
     files: [
@@ -459,8 +456,8 @@ export const PAPERS_DATA = [
         id: "1CH2buSEXd8ghxKhsuTnm29YuEcYQYbDN",
         name: "HW SOLUTION",
         type: "folder",
-        downloadUrl: "https://drive.google.com/drive/folders/1CH2buSEXd8ghxKhsuTnm29YuEcYQYbDN",
-        viewUrl: "https://drive.google.com/drive/folders/1CH2buSEXd8ghxKhsuTnm29YuEcYQYbDN",
+        downloadUrl: "https://github.com/jaiyankargupta/aac/releases/tag/v1.0.0",
+        viewUrl: "https://github.com/jaiyankargupta/aac/releases/tag/v1.0.0",
         size: "Folder / HW Solutions"
       }
     ]
@@ -475,7 +472,7 @@ export const PAPERS_DATA = [
     color: "#10b981", // Emerald accent
     bgGradient: "linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(52, 211, 153, 0.02) 100%)",
     iconName: "Briefcase",
-    folderUrl: "https://drive.google.com/drive/folders/16gOrgv0byDzGSwYtarsmh6ElPdi1VYk5",
+    folderUrl: "https://github.com/jaiyankargupta/aac/releases/tag/v1.0.0",
     badgeText: "Group 2 Core",
     description: "Management Accounting Main Book, Building Blocks, Chart Book & Learning Curve PDF.",
     files: [

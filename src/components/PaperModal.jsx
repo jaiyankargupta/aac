@@ -7,16 +7,6 @@ export default function PaperModal({ paper, onClose }) {
 
   if (!paper) return null;
 
-  const triggerDownload = (fileUrl) => {
-    const link = document.createElement('a');
-    link.href = fileUrl;
-    link.target = '_blank';
-    link.rel = 'noopener noreferrer';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
-
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
@@ -114,20 +104,9 @@ export default function PaperModal({ paper, onClose }) {
           </div>
 
           <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.75rem' }}>
-            <button className="btn-card-outline" onClick={onClose}>
+            <button className="btn-card-outline" onClick={onClose} style={{ padding: '0.6rem 1.5rem' }}>
               Close Window
             </button>
-
-            <a
-              href="https://github.com/jaiyankargupta/aac/releases/tag/v1.0.0"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-card-primary"
-              style={{ backgroundColor: paper.color, padding: '0.7rem 1.4rem' }}
-            >
-              <ExternalLink size={18} />
-              <span>GitHub Release CDN</span>
-            </a>
           </div>
         </div>
       </div>

@@ -1,6 +1,5 @@
 import React from 'react';
-import { BookOpen, Search, ExternalLink, Moon, Sun } from 'lucide-react';
-import { MAIN_DRIVE_LINK } from '../data/papers';
+import { BookOpen, Search, Moon, Sun } from 'lucide-react';
 
 export default function Header({ searchQuery, setSearchQuery, isDark, setIsDark }) {
   return (
@@ -36,16 +35,6 @@ export default function Header({ searchQuery, setSearchQuery, isDark, setIsDark 
           >
             {isDark ? <Sun size={20} /> : <Moon size={20} />}
           </button>
-
-          <a
-            href={MAIN_DRIVE_LINK}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-primary-drive"
-          >
-            <ExternalLink size={18} />
-            <span>Open Google Drive</span>
-          </a>
         </div>
       </div>
     </header>

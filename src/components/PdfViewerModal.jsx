@@ -1,10 +1,12 @@
+import React from 'react';
 import ReactDOM from 'react-dom';
-import { X, Download, FileText, ArrowLeft, ExternalLink } from 'lucide-react';
+import { X, Download, FileText, ArrowLeft } from 'lucide-react';
 
 export default function PdfViewerModal({ file, paperColor, onClose }) {
   if (!file) return null;
 
   const pdfUrl = file.downloadUrl;
+  const proxyViewerUrl = `/api/pdf-proxy?url=${encodeURIComponent(pdfUrl)}`;
 
   const modalJSX = (
     <div
@@ -75,7 +77,7 @@ export default function PdfViewerModal({ file, paperColor, onClose }) {
                 {file.name}
               </h2>
               <span style={{ fontSize: '0.72rem', color: '#94a3b8' }}>
-                {file.size || 'Direct PDF Document'}
+                {file.size || 'In-App Document Reader'}
               </span>
             </div>
           </div>
@@ -101,7 +103,7 @@ export default function PdfViewerModal({ file, paperColor, onClose }) {
             }}
           >
             <Download size={16} />
-            <span>Direct Download PDF</span>
+            <span>Download PDF</span>
           </a>
 
           <button
@@ -125,10 +127,10 @@ export default function PdfViewerModal({ file, paperColor, onClose }) {
         </div>
       </div>
 
-      {/* Main Fullscreen Viewer Section */}
+      {/* Main Fullscreen Viewer Section - Native Inline PDF Reader */}
       <div style={{ flex: 1, width: '100%', height: 'calc(100vh - 64px)', background: '#000000' }}>
         <iframe
-          src={pdfUrl}
+          src={proxyViewerUrl}
           title={file.name}
           style={{
             width: '100%',
