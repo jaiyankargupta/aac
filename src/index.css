@@ -1,32 +1,32 @@
 :root {
   --font-headline: 'Sora', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  
+
   --bg-primary: #f8fafc;
   --bg-surface: #ffffff;
   --bg-card: rgba(255, 255, 255, 0.85);
   --bg-glass: rgba(255, 255, 255, 0.7);
   --bg-header: #0f172a;
   --bg-header-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #311b92 100%);
-  
+
   --text-primary: #0f172a;
   --text-secondary: #475569;
   --text-muted: #64748b;
   --text-inverse: #ffffff;
-  
+
   --border-color: #e2e8f0;
   --border-hover: #cbd5e1;
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.03);
-  --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -1px rgba(0,0,0,0.04);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.03);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
   --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
-  
+
   --accent-primary: #4f46e5;
   --accent-primary-hover: #4338ca;
   --accent-blue: #2563eb;
   --accent-emerald: #10b981;
   --accent-amber: #f59e0b;
   --accent-rose: #f43f5e;
-  
+
   --radius-sm: 6px;
   --radius-md: 12px;
   --radius-lg: 16px;
@@ -41,17 +41,17 @@
   --bg-glass: rgba(19, 27, 46, 0.75);
   --bg-header: #050811;
   --bg-header-gradient: linear-gradient(135deg, #050811 0%, #0f172a 50%, #1e1b4b 100%);
-  
+
   --text-primary: #f8fafc;
   --text-secondary: #cbd5e1;
   --text-muted: #94a3b8;
   --text-inverse: #ffffff;
-  
+
   --border-color: #1e293b;
   --border-hover: #334155;
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.4);
-  --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.5);
-  --shadow-lg: 0 10px 25px -5px rgba(0,0,0,0.6);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.6);
 }
 
 * {
@@ -72,7 +72,12 @@ body {
   overflow-x: hidden;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-headline);
   font-weight: 700;
   color: var(--text-primary);
@@ -106,7 +111,7 @@ button {
   max-width: 1400px;
   width: 100%;
   margin: 0 auto;
-  padding: 2rem 1.5rem 4rem 1.5rem;
+  padding: 1.5rem 1.5rem 4rem 1.5rem;
   flex: 1;
 }
 
@@ -115,11 +120,11 @@ button {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(15, 23, 42, 0.94);
+  background: rgba(15, 23, 42, 0.96);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 0.85rem 1.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 0.75rem 1.25rem;
   color: var(--text-inverse);
 }
 
@@ -129,20 +134,21 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1.25rem;
+  gap: 1rem;
 }
 
 .brand-logo {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.65rem;
   text-decoration: none;
   color: white;
+  flex-shrink: 0;
 }
 
 .brand-icon-wrapper {
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   border-radius: var(--radius-md);
   background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
   display: flex;
@@ -154,20 +160,22 @@ button {
 }
 
 .brand-title {
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   font-weight: 700;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
   background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  white-space: nowrap;
 }
 
 .brand-subtitle {
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   color: #94a3b8;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  white-space: nowrap;
 }
 
 .search-bar-wrapper {
@@ -178,12 +186,12 @@ button {
 
 .search-input {
   width: 100%;
-  padding: 0.65rem 1rem 0.65rem 2.65rem;
+  padding: 0.6rem 1rem 0.6rem 2.5rem;
   background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: var(--radius-pill);
   color: white;
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   outline: none;
   transition: all 0.2s ease;
 }
@@ -200,7 +208,7 @@ button {
 
 .search-icon {
   position: absolute;
-  left: 0.9rem;
+  left: 0.85rem;
   top: 50%;
   transform: translateY(-50%);
   color: #94a3b8;
@@ -210,12 +218,13 @@ button {
 .nav-actions {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.65rem;
+  flex-shrink: 0;
 }
 
 .theme-toggle-btn {
-  width: 38px;
-  height: 38px;
+  width: 36px;
+  height: 36px;
   border-radius: var(--radius-pill);
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.15);
@@ -234,12 +243,13 @@ button {
 .btn-primary-drive {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.65rem 1.25rem;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.55rem 1.1rem;
   background: linear-gradient(135deg, #4f46e5 0%, #3730a3 100%);
   color: white;
   font-weight: 600;
-  font-size: 0.88rem;
+  font-size: 0.85rem;
   border-radius: var(--radius-pill);
   box-shadow: 0 4px 14px rgba(79, 70, 229, 0.4);
   text-decoration: none;
@@ -250,101 +260,6 @@ button {
 .btn-primary-drive:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(79, 70, 229, 0.55);
-}
-
-/* Hero Drive Banner */
-.hero-banner {
-  background: var(--bg-header-gradient);
-  border-radius: var(--radius-xl);
-  padding: 2.75rem 2.25rem;
-  color: white;
-  margin-bottom: 2.25rem;
-  position: relative;
-  overflow: hidden;
-  box-shadow: var(--shadow-lg);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.hero-content {
-  position: relative;
-  z-index: 2;
-  max-width: 800px;
-}
-
-.hero-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.35rem 0.85rem;
-  background: rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: var(--radius-pill);
-  font-size: 0.78rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: #a5b4fc;
-  margin-bottom: 1rem;
-}
-
-.hero-title {
-  font-size: 2.2rem;
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  line-height: 1.2;
-  margin-bottom: 0.85rem;
-  color: white;
-}
-
-.hero-description {
-  font-size: 1.05rem;
-  color: #cbd5e1;
-  margin-bottom: 1.75rem;
-  max-width: 650px;
-  line-height: 1.6;
-}
-
-.hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 1rem;
-}
-
-.btn-drive-large {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.65rem;
-  padding: 0.85rem 1.6rem;
-  background: #ffffff;
-  color: #0f172a;
-  font-weight: 700;
-  font-size: 0.95rem;
-  border-radius: var(--radius-pill);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
-  text-decoration: none;
-  transition: all 0.25s ease;
-}
-
-.btn-drive-large:hover {
-  background: #f8fafc;
-  transform: translateY(-2px);
-}
-
-.btn-outline-white {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.85rem 1.5rem;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  color: white;
-  font-weight: 600;
-  font-size: 0.9rem;
-  border-radius: var(--radius-pill);
-  backdrop-filter: blur(8px);
-  text-decoration: none;
 }
 
 /* Filter Controls Bar */
@@ -367,7 +282,7 @@ button {
   align-items: center;
   gap: 0.5rem;
   overflow-x: auto;
-  padding-bottom: 0.25rem;
+  padding-bottom: 0.35rem;
   width: 100%;
   -webkit-overflow-scrolling: touch;
 }
@@ -513,44 +428,6 @@ button {
   gap: 0.35rem;
 }
 
-/* Stats Section */
-.quick-stats-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.15rem;
-  margin-bottom: 3rem;
-}
-
-.stat-card {
-  padding: 1.25rem;
-  border-radius: var(--radius-lg);
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.stat-icon {
-  width: 46px;
-  height: 46px;
-  border-radius: var(--radius-md);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.stat-number {
-  font-size: 1.4rem;
-  font-weight: 800;
-  line-height: 1.1;
-}
-
-.stat-label {
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  font-weight: 500;
-}
-
 /* Modals */
 .modal-overlay {
   position: fixed;
@@ -642,65 +519,48 @@ button {
 /* --- MOBILE RESPONSIVE MEDIA QUERIES --- */
 @media (max-width: 768px) {
   .main-content {
-    padding: 1.25rem 1rem 3rem 1rem;
+    padding: 1rem 0.85rem 3rem 0.85rem;
   }
+
   .navbar {
-    padding: 0.75rem 1rem;
+    padding: 0.65rem 0.85rem;
   }
+
   .navbar-inner {
     flex-wrap: wrap;
-    gap: 0.75rem;
+    gap: 0.6rem;
   }
+
   .search-bar-wrapper {
     order: 3;
     max-width: 100%;
     width: 100%;
+    margin-top: 0.25rem;
   }
-  .hero-banner {
-    padding: 1.75rem 1.25rem;
-    border-radius: var(--radius-lg);
+
+  .search-input {
+    font-size: 0.85rem;
+    padding: 0.55rem 1rem 0.55rem 2.4rem;
   }
-  .hero-title {
-    font-size: 1.65rem;
-  }
-  .hero-description {
-    font-size: 0.95rem;
-    margin-bottom: 1.25rem;
-  }
-  .hero-actions {
-    flex-direction: column;
-    align-items: stretch;
-    width: 100%;
-  }
-  .btn-drive-large, .btn-outline-white {
-    width: 100%;
-    justify-content: center;
-    padding: 0.75rem 1.25rem;
-    font-size: 0.9rem;
-  }
+
   .subject-grid {
     grid-template-columns: 1fr;
-    gap: 1.25rem;
+    gap: 1.15rem;
   }
+
   .card-actions {
     grid-template-columns: 1fr;
   }
-  .quick-stats-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 0.85rem;
+
+  .modal-overlay {
+    padding: 0.5rem;
   }
-  .stat-card {
+
+  .modal-header,
+  .modal-body {
     padding: 1rem;
   }
-  .stat-number {
-    font-size: 1.2rem;
-  }
-  .modal-overlay {
-    padding: 0.75rem;
-  }
-  .modal-header, .modal-body {
-    padding: 1.15rem;
-  }
+
   .footer-inner {
     flex-direction: column;
     align-items: flex-start;
@@ -710,19 +570,25 @@ button {
 
 @media (max-width: 480px) {
   .brand-title {
-    font-size: 1.05rem;
+    font-size: 0.88rem;
+    letter-spacing: -0.02em;
   }
+
   .brand-subtitle {
     display: none;
   }
-  .quick-stats-grid {
-    grid-template-columns: 1fr;
-  }
-  .btn-primary-drive span {
-    display: none;
-  }
+
   .btn-primary-drive {
-    padding: 0.55rem;
-    border-radius: 50%;
+    padding: 0.45rem 0.75rem;
+    font-size: 0.78rem;
+    border-radius: var(--radius-pill);
+  }
+
+  .btn-primary-drive span {
+    display: inline-block;
+  }
+
+  .filter-title {
+    font-size: 1.2rem;
   }
 }
