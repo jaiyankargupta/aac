@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { X, Download, FileText, ArrowLeft, Loader2, Folder } from 'lucide-react';
 
-const BACKEND_URL = "https://aac-ue14.onrender.com";
-
 export default function PdfViewerModal({ file, paperColor, onClose }) {
   if (!file) return null;
 
@@ -15,7 +13,7 @@ export default function PdfViewerModal({ file, paperColor, onClose }) {
   }, [file]);
 
   const pdfUrl = file.downloadUrl;
-  const proxyViewerUrl = `${BACKEND_URL}/api/pdf-proxy?url=${encodeURIComponent(pdfUrl)}`;
+  const proxyViewerUrl = `/api/pdf-proxy?url=${encodeURIComponent(pdfUrl)}`;
 
   const modalJSX = (
     <div

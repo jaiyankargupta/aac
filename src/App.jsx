@@ -6,8 +6,6 @@ import Footer from './components/Footer';
 import { PAPERS_DATA } from './data/papers';
 import { BookOpen } from 'lucide-react';
 
-const BACKEND_URL = "https://aac-ue14.onrender.com";
-
 export default function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState('ALL');
@@ -23,7 +21,7 @@ export default function App() {
 
   // Silent background warm-up ping on website load
   useEffect(() => {
-    fetch(`${BACKEND_URL}/health`)
+    fetch('/api/pdf-proxy?health=1')
       .then(res => res.json())
       .catch(() => { });
   }, []);
