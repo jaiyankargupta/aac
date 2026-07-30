@@ -8,7 +8,7 @@ export default function PdfViewerModal({ file, paperColor, onClose }) {
   if (!file) return null;
 
   const pdfUrl = file.downloadUrl;
-  const proxyViewerUrl = `/api/pdf-proxy?url=${encodeURIComponent(pdfUrl)}`;
+  const proxyViewerUrl = `${BACKEND_URL}/api/pdf-proxy?url=${encodeURIComponent(pdfUrl)}`;
 
   const modalJSX = (
     <div
