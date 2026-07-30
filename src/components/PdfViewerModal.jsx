@@ -7,6 +7,13 @@ const BACKEND_URL = "https://aac-ue14.onrender.com";
 export default function PdfViewerModal({ file, paperColor, onClose }) {
   if (!file) return null;
 
+  useEffect(() => {
+    if (file && file.type === 'folder') {
+      window.open(file.downloadUrl, '_blank');
+      onClose();
+    }
+  }, [file]);
+
   const pdfUrl = file.downloadUrl;
   const proxyViewerUrl = `${BACKEND_URL}/api/pdf-proxy?url=${encodeURIComponent(pdfUrl)}`;
 

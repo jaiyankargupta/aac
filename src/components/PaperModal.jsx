@@ -72,12 +72,18 @@ export default function PaperModal({ paper, onClose }) {
 
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexShrink: 0 }}>
                   <button
-                    onClick={() => setActivePreviewFile(file)}
+                    onClick={() => {
+                      if (file.type === 'folder') {
+                        window.open(file.downloadUrl, '_blank');
+                      } else {
+                        setActivePreviewFile(file);
+                      }
+                    }}
                     className="btn-card-outline"
                     style={{ padding: '0.45rem 0.9rem', fontSize: '0.85rem' }}
                   >
-                    <Eye size={15} />
-                    <span>View</span>
+                    {file.type === 'folder' ? <Folder size={15} /> : <Eye size={15} />}
+                    <span>{file.type === 'folder' ? 'Open' : 'View'}</span>
                   </button>
 
                   <a
@@ -95,8 +101,8 @@ export default function PaperModal({ paper, onClose }) {
                       gap: '0.4rem'
                     }}
                   >
-                    <Download size={15} />
-                    <span>Download</span>
+                    {file.type === 'folder' ? <Folder size={15} /> : <Download size={15} />}
+                    <span>{file.type === 'folder' ? 'Open Folder' : 'Download'}</span>
                   </a>
                 </div>
               </div>

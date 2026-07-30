@@ -134,7 +134,13 @@ export default function PaperCard({ paper, onSelectPaper, isFavorite, onToggleFa
 
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.4rem', paddingTop: '0.35rem', borderTop: '1px solid rgba(0,0,0,0.05)' }}>
                 <button
-                  onClick={() => setActivePreviewFile(file)}
+                  onClick={() => {
+                    if (file.type === 'folder') {
+                      window.open(file.downloadUrl, '_blank');
+                    } else {
+                      setActivePreviewFile(file);
+                    }
+                  }}
                   className="btn-card-outline"
                   style={{
                     padding: '0.4rem 0.5rem',
@@ -142,14 +148,20 @@ export default function PaperCard({ paper, onSelectPaper, isFavorite, onToggleFa
                     justifyContent: 'center',
                     borderRadius: 'var(--radius-sm)'
                   }}
-                  title="View PDF In-App"
+                  title={file.type === 'folder' ? "Browse Folder Resources" : "View PDF In-App"}
                 >
-                  <Eye size={14} />
-                  <span>View</span>
+                  {file.type === 'folder' ? <Folder size={14} /> : <Eye size={14} />}
+                  <span>{file.type === 'folder' ? 'Open' : 'View'}</span>
                 </button>
 
                 <button
-                  onClick={() => triggerDownload(file.downloadUrl)}
+                  onClick={() => {
+                    if (file.type === 'folder') {
+                      window.open(file.downloadUrl, '_blank');
+                    } else {
+                      triggerDownload(file.downloadUrl);
+                    }
+                  }}
                   className="btn-card-primary"
                   style={{
                     backgroundColor: paper.color,
@@ -158,10 +170,10 @@ export default function PaperCard({ paper, onSelectPaper, isFavorite, onToggleFa
                     justifyContent: 'center',
                     borderRadius: 'var(--radius-sm)'
                   }}
-                  title="Instant Direct Download"
+                  title={file.type === 'folder' ? "Open Folder Resources" : "Instant Direct Download"}
                 >
-                  <Download size={14} />
-                  <span>Download</span>
+                  {file.type === 'folder' ? <Folder size={14} /> : <Download size={14} />}
+                  <span>{file.type === 'folder' ? 'Folder' : 'Download'}</span>
                 </button>
               </div>
             </div>
