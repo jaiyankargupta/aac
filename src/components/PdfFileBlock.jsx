@@ -13,6 +13,16 @@ export default function PdfFileBlock({
   const chapters = file.chapters || [];
   const chapterCount = chapters.length;
 
+  const chapterAsFile = (chapter) => ({
+    id: chapter.fileName,
+    uid: chapter.fileName,
+    name: `${chapter.title}.pdf`,
+    type: "pdf",
+    downloadUrl: chapter.downloadUrl,
+    viewUrl: chapter.viewUrl,
+    size: "Chapter PDF only"
+  });
+
   return (
     <div className="pdf-file-block">
       <div className="pdf-file-head">
@@ -22,7 +32,7 @@ export default function PdfFileBlock({
           <div className="pdf-file-sub">
             {file.size}
             {file.pages ? ` · ${file.pages} pages` : ''}
-            {chapterCount ? ` · ${chapterCount} chapters` : ''}
+            {chapterCount ? ` · ${chapterCount} separate chapter PDFs` : ''}
           </div>
         </div>
       </div>
@@ -34,16 +44,16 @@ export default function PdfFileBlock({
           title="View full PDF"
         >
           <Eye size={14} />
-          <span>View PDF</span>
+          <span>View full book</span>
         </button>
         <button
           onClick={() => onDownload(file)}
           className="btn-card-primary"
           style={{ backgroundColor: paperColor }}
-          title="Download this PDF"
+          title="Download full PDF"
         >
           <Download size={14} />
-          <span>Download</span>
+          <span>Full book</span>
         </button>
       </div>
 
@@ -55,7 +65,7 @@ export default function PdfFileBlock({
             aria-expanded={open}
           >
             <BookMarked size={14} color={paperColor} />
-            <span>Chapters inside this PDF ({chapterCount})</span>
+            <span>Open a chapter PDF ({chapterCount})</span>
             <ChevronDown
               size={16}
               className={`pdf-chevron ${open ? 'open' : ''}`}
@@ -64,21 +74,39 @@ export default function PdfFileBlock({
 
           {open && (
             <ol className="pdf-chapter-list">
-              {chapters.map((chapter, index) => (
-                <li key={`${file.uid}-ch-${index}`}>
-                  <button
-                    className="pdf-chapter-item"
-                    onClick={() => onView(file, chapter.page)}
-                    title={chapter.page ? `Open at page ${chapter.page}` : 'Open this PDF'}
-                  >
-                    <span className="pdf-chapter-num">{index + 1}</span>
-                    <span className="pdf-chapter-title">{chapter.title}</span>
-                    {chapter.page ? (
-                      <span className="pdf-chapter-page">p.{chapter.page}</span>
-                    ) : null}
-                  </button>
-                </li>
-              ))}
+              {chapters.map((chapter, index) => {
+                const chapterFile = chapterAsFile(chapter);
+                return (
+                  <li key={`${file.uid}-ch-${index}`}>
+                    <div className="pdf-chapter-row">
+                      <button
+                        className="pdf-chapter-item"
+                        onClick={() => onView(chapterFile)}
+                        title={`Open only: ${chapter.title}`}
+                      >
+                        <span className="pdf-chapter-num">{index + 1}</span>
+                        <span className="pdf-chapter-title">{chapter.title}</span>
+                      </button>
+                      <div className="pdf-chapter-btns">
+                        <button
+                          className="pdf-chapter-mini"
+                          onClick={() => onView(chapterFile)}
+                          title="View this chapter only"
+                        >
+                          <Eye size={13} />
+                        </button>
+                        <button
+                          className="pdf-chapter-mini"
+                          onClick={() => onDownload(chapterFile)}
+                          title="Download this chapter only"
+                        >
+                          <Download size={13} />
+                        </button>
+                      </div>
+                    </div>
+                  </li>
+                );
+              })}
             </ol>
           )}
         </div>

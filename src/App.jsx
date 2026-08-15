@@ -77,7 +77,7 @@ export default function App() {
           <div>
             <h2 className="filter-title">AAC Study Materials Catalog</h2>
             <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>
-              Each subject is listed PDF-wise. Open a book, expand its chapters, and jump straight to that page.
+              Each book is split into separate chapter PDFs. Click a chapter to open only those pages.
             </p>
           </div>
 

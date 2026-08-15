@@ -4,6 +4,16 @@ export const MAIN_DRIVE_LINK_G2 = GITHUB_RELEASE_URL;
 export const MAIN_DRIVE_LINK = GITHUB_RELEASE_URL;
 
 const GITHUB_RELEASE_BASE = "https://github.com/jaiyankargupta/aac/releases/download/v1.0.0";
+export const CHAPTER_RELEASE_BASE = "https://github.com/jaiyankargupta/aac/releases/download/v1.1.0";
+
+const slugTitle = (title) =>
+  title.replace(/[^A-Za-z0-9]+/g, "_").replace(/^_|_$/g, "").slice(0, 55);
+
+export const chapterAssetName = (sourceFileName, index, title) => {
+  const stem = sourceFileName.replace(/\.pdf$/i, "");
+  const n = String(index + 1).padStart(2, "0");
+  return `${stem}_Ch${n}_${slugTitle(title)}.pdf`;
+};
 
 const FILE_NAME_MAP = {
   "1LxmsvcyGVcLO-rDN1R30zq7UtsmJTL09": "Business_Law_Ethics_G-1_mb_V-1.pdf",
@@ -52,17 +62,29 @@ const getViewLink = (id) => getDirectDownloadLink(id);
 
 const ch = (title, page) => ({ title, page });
 
-const pdf = (id, name, size, pages, chapters = []) => ({
-  id,
-  uid: `${id}::${name}`,
-  name,
-  type: "pdf",
-  downloadUrl: getDirectDownloadLink(id),
-  viewUrl: getViewLink(id),
-  size,
-  pages,
-  chapters
-});
+const pdf = (id, name, size, pages, chapters = []) => {
+  const sourceFileName = FILE_NAME_MAP[id];
+  return {
+    id,
+    uid: `${id}::${name}`,
+    name,
+    type: "pdf",
+    sourceFileName,
+    downloadUrl: getDirectDownloadLink(id),
+    viewUrl: getViewLink(id),
+    size,
+    pages,
+    chapters: chapters.map((chapter, index) => {
+      const fileName = chapterAssetName(sourceFileName, index, chapter.title);
+      return {
+        ...chapter,
+        fileName,
+        downloadUrl: `${CHAPTER_RELEASE_BASE}/${fileName}`,
+        viewUrl: `${CHAPTER_RELEASE_BASE}/${fileName}`
+      };
+    })
+  };
+};
 
 export const PAPERS_DATA = [
   {

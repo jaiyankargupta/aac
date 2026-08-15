@@ -514,8 +514,15 @@ button {
   padding-right: 0.15rem;
 }
 
+.pdf-chapter-row {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
 .pdf-chapter-item {
-  width: 100%;
+  flex: 1;
+  min-width: 0;
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -524,6 +531,25 @@ button {
   text-align: left;
   color: var(--text-primary);
   background: transparent;
+}
+
+.pdf-chapter-btns {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  flex-shrink: 0;
+}
+
+.pdf-chapter-mini {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+  background: var(--bg-primary);
+  color: var(--text-secondary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .pdf-chapter-item:hover {
