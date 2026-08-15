@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Download, ExternalLink, FileText, Folder, Star, Eye, Scale, Calculator, Receipt, PieChart, Boxes, FileCheck, TrendingUp, Briefcase } from 'lucide-react';
+import { Star, Scale, Calculator, Receipt, PieChart, Boxes, FileCheck, TrendingUp, Briefcase } from 'lucide-react';
 import PdfViewerModal from './PdfViewerModal';
+import PdfFileBlock from './PdfFileBlock';
 
 const ICON_MAP = {
   Scale,
@@ -14,11 +15,11 @@ const ICON_MAP = {
 };
 
 export default function PaperCard({ paper, onSelectPaper, isFavorite, onToggleFavorite }) {
-  const [activePreviewFile, setActivePreviewFile] = useState(null);
+  const [preview, setPreview] = useState(null);
 
-  const triggerDownload = (fileUrl) => {
+  const triggerDownload = (file) => {
     const link = document.createElement('a');
-    link.href = fileUrl;
+    link.href = file.downloadUrl;
     link.target = '_blank';
     link.rel = 'noopener noreferrer';
     document.body.appendChild(link);
@@ -27,6 +28,7 @@ export default function PaperCard({ paper, onSelectPaper, isFavorite, onToggleFa
   };
 
   const PaperIcon = ICON_MAP[paper.iconName] || Scale;
+  const chapterTotal = paper.files.reduce((sum, file) => sum + (file.chapters?.length || 0), 0);
 
   return (
     <div className="paper-card glass-panel" style={{ background: paper.bgGradient }}>
@@ -88,95 +90,19 @@ export default function PaperCard({ paper, onSelectPaper, isFavorite, onToggleFa
         <p className="paper-description">{paper.description}</p>
 
         <div className="section-mini-title">
-          <Download size={13} style={{ color: paper.color }} />
-          <span>1-Click Files & Materials ({paper.files.length})</span>
+          <span>PDFs in this paper ({paper.files.length}) · {chapterTotal} chapters</span>
         </div>
 
-        <div className="file-list-container" style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem', marginBottom: '1.25rem' }}>
+        <div className="file-list-container" style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginBottom: '1.25rem' }}>
           {paper.files.map((file) => (
-            <div
-              key={file.id}
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '0.5rem',
-                padding: '0.75rem',
-                background: 'var(--bg-surface)',
-                borderRadius: 'var(--radius-md)',
-                border: '1px solid var(--border-color)',
-                boxShadow: 'var(--shadow-sm)'
-              }}
-            >
-              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.6rem' }}>
-                {file.type === 'pdf' ? (
-                  <FileText size={18} color={paper.color} style={{ flexShrink: 0, marginTop: '0.2rem' }} />
-                ) : (
-                  <Folder size={18} color={paper.color} style={{ flexShrink: 0, marginTop: '0.2rem' }} />
-                )}
-                <div style={{ flex: 1 }}>
-                  <div
-                    style={{
-                      fontSize: '0.9rem',
-                      fontWeight: 700,
-                      color: 'var(--text-primary)',
-                      lineHeight: '1.35',
-                      wordBreak: 'break-word',
-                      whiteSpace: 'normal'
-                    }}
-                  >
-                    {file.name}
-                  </div>
-                  <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '0.15rem' }}>
-                    {file.size}
-                  </div>
-                </div>
-              </div>
-
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.4rem', paddingTop: '0.35rem', borderTop: '1px solid rgba(0,0,0,0.05)' }}>
-                <button
-                  onClick={() => {
-                    if (file.type === 'folder') {
-                      window.open(file.downloadUrl, '_blank');
-                    } else {
-                      setActivePreviewFile(file);
-                    }
-                  }}
-                  className="btn-card-outline"
-                  style={{
-                    padding: '0.4rem 0.5rem',
-                    fontSize: '0.8rem',
-                    justifyContent: 'center',
-                    borderRadius: 'var(--radius-sm)'
-                  }}
-                  title={file.type === 'folder' ? "Browse Folder Resources" : "View PDF In-App"}
-                >
-                  {file.type === 'folder' ? <Folder size={14} /> : <Eye size={14} />}
-                  <span>{file.type === 'folder' ? 'Open' : 'View'}</span>
-                </button>
-
-                <button
-                  onClick={() => {
-                    if (file.type === 'folder') {
-                      window.open(file.downloadUrl, '_blank');
-                    } else {
-                      triggerDownload(file.downloadUrl);
-                    }
-                  }}
-                  className="btn-card-primary"
-                  style={{
-                    backgroundColor: paper.color,
-                    padding: '0.4rem 0.5rem',
-                    fontSize: '0.8rem',
-                    justifyContent: 'center',
-                    borderRadius: 'var(--radius-sm)'
-                  }}
-                  title={file.type === 'folder' ? "Open Folder Resources" : "Instant Direct Download"}
-                >
-                  {file.type === 'folder' ? <Folder size={14} /> : <Download size={14} />}
-                  <span>{file.type === 'folder' ? 'Folder' : 'Download'}</span>
-                </button>
-              </div>
-            </div>
+            <PdfFileBlock
+              key={file.uid}
+              file={file}
+              paperColor={paper.color}
+              compact
+              onView={(picked, page) => setPreview({ file: picked, page })}
+              onDownload={triggerDownload}
+            />
           ))}
         </div>
 
@@ -184,18 +110,19 @@ export default function PaperCard({ paper, onSelectPaper, isFavorite, onToggleFa
           <button
             onClick={() => onSelectPaper(paper)}
             className="btn-card-outline"
-            style={{ width: '100%', justifyContent: 'center' }}
+            style={{ width: '100%', justifyContent: 'center', gridColumn: '1 / -1' }}
           >
-            <span>Full Overview & Materials</span>
+            <span>Open all PDFs & chapters</span>
           </button>
         </div>
       </div>
 
-      {activePreviewFile && (
+      {preview && (
         <PdfViewerModal
-          file={activePreviewFile}
+          file={preview.file}
+          startPage={preview.page}
           paperColor={paper.color}
-          onClose={() => setActivePreviewFile(null)}
+          onClose={() => setPreview(null)}
         />
       )}
     </div>

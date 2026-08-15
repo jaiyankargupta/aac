@@ -387,7 +387,7 @@ button {
 /* Card Actions Footer */
 .card-actions {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 0.65rem;
   padding-top: 1rem;
   border-top: 1px solid var(--border-color);
@@ -419,6 +419,148 @@ button {
   align-items: center;
   justify-content: center;
   gap: 0.35rem;
+}
+
+.pdf-file-block {
+  padding: 0.85rem;
+  background: var(--bg-surface);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.pdf-file-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+}
+
+.pdf-file-icon {
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+}
+
+.pdf-file-meta {
+  flex: 1;
+  min-width: 0;
+}
+
+.pdf-file-name {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.35;
+  word-break: break-word;
+}
+
+.pdf-file-sub {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 0.15rem;
+}
+
+.pdf-file-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4rem;
+}
+
+.pdf-file-actions .btn-card-outline,
+.pdf-file-actions .btn-card-primary {
+  padding: 0.4rem 0.5rem;
+  font-size: 0.8rem;
+  border-radius: var(--radius-sm);
+}
+
+.pdf-chapter-toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.55rem;
+  border-radius: var(--radius-sm);
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.pdf-chapter-toggle span {
+  flex: 1;
+  text-align: left;
+}
+
+.pdf-chevron {
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.pdf-chevron.open {
+  transform: rotate(180deg);
+}
+
+.pdf-chapter-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-top: 0.45rem;
+  max-height: 280px;
+  overflow-y: auto;
+  padding-right: 0.15rem;
+}
+
+.pdf-chapter-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.5rem;
+  border-radius: var(--radius-sm);
+  text-align: left;
+  color: var(--text-primary);
+  background: transparent;
+}
+
+.pdf-chapter-item:hover {
+  background: var(--bg-primary);
+}
+
+.pdf-chapter-num {
+  width: 1.35rem;
+  height: 1.35rem;
+  border-radius: 999px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  font-size: 0.68rem;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--text-muted);
+}
+
+.pdf-chapter-title {
+  flex: 1;
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.pdf-chapter-page {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.modal-content-wide {
+  max-width: 820px;
 }
 
 /* Modals */

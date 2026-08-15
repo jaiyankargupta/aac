@@ -1,15 +1,28 @@
 import React, { useState } from 'react';
-import { X, ExternalLink, Download, FileText, Folder, Eye } from 'lucide-react';
+import { X, FileText } from 'lucide-react';
 import PdfViewerModal from './PdfViewerModal';
+import PdfFileBlock from './PdfFileBlock';
 
 export default function PaperModal({ paper, onClose }) {
-  const [activePreviewFile, setActivePreviewFile] = useState(null);
+  const [preview, setPreview] = useState(null);
 
   if (!paper) return null;
 
+  const triggerDownload = (file) => {
+    const link = document.createElement('a');
+    link.href = file.downloadUrl;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const chapterTotal = paper.files.reduce((sum, file) => sum + (file.chapters?.length || 0), 0);
+
   return (
     <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+      <div className="modal-content modal-content-wide" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.4rem' }}>
@@ -34,78 +47,22 @@ export default function PaperModal({ paper, onClose }) {
           </p>
 
           <h4 style={{ fontSize: '1rem', marginBottom: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <Download size={18} color={paper.color} />
-            <span>Files Available for Direct 1-Click Download ({paper.files.length})</span>
+            <FileText size={18} color={paper.color} />
+            <span>
+              {paper.files.length} PDFs · {chapterTotal} chapters inside
+            </span>
           </h4>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginBottom: '1.75rem' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem', marginBottom: '1.75rem' }}>
             {paper.files.map((file) => (
-              <div
-                key={file.id}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  gap: '1rem',
-                  padding: '0.85rem 1.1rem',
-                  background: 'var(--bg-primary)',
-                  borderRadius: 'var(--radius-md)',
-                  border: '1px solid var(--border-color)',
-                  flexWrap: 'wrap'
-                }}
-              >
-                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem', flex: 1, minWidth: '220px' }}>
-                  {file.type === 'pdf' ? (
-                    <FileText size={22} color={paper.color} style={{ flexShrink: 0, marginTop: '0.1rem' }} />
-                  ) : (
-                    <Folder size={22} color={paper.color} style={{ flexShrink: 0, marginTop: '0.1rem' }} />
-                  )}
-                  <div>
-                    <div style={{ fontWeight: 700, fontSize: '0.95rem', color: 'var(--text-primary)', wordBreak: 'break-word' }}>
-                      {file.name}
-                    </div>
-                    <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '0.1rem' }}>
-                      {file.size}
-                    </div>
-                  </div>
-                </div>
-
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexShrink: 0 }}>
-                  <button
-                    onClick={() => {
-                      if (file.type === 'folder') {
-                        window.open(file.downloadUrl, '_blank');
-                      } else {
-                        setActivePreviewFile(file);
-                      }
-                    }}
-                    className="btn-card-outline"
-                    style={{ padding: '0.45rem 0.9rem', fontSize: '0.85rem' }}
-                  >
-                    {file.type === 'folder' ? <Folder size={15} /> : <Eye size={15} />}
-                    <span>{file.type === 'folder' ? 'Open' : 'View'}</span>
-                  </button>
-
-                  <a
-                    href={file.downloadUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn-card-primary"
-                    style={{
-                      backgroundColor: paper.color,
-                      padding: '0.45rem 1.1rem',
-                      fontSize: '0.85rem',
-                      textDecoration: 'none',
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '0.4rem'
-                    }}
-                  >
-                    {file.type === 'folder' ? <Folder size={15} /> : <Download size={15} />}
-                    <span>{file.type === 'folder' ? 'Open Folder' : 'Download'}</span>
-                  </a>
-                </div>
-              </div>
+              <PdfFileBlock
+                key={file.uid}
+                file={file}
+                paperColor={paper.color}
+                defaultOpen
+                onView={(picked, page) => setPreview({ file: picked, page })}
+                onDownload={triggerDownload}
+              />
             ))}
           </div>
 
@@ -117,11 +74,12 @@ export default function PaperModal({ paper, onClose }) {
         </div>
       </div>
 
-      {activePreviewFile && (
+      {preview && (
         <PdfViewerModal
-          file={activePreviewFile}
+          file={preview.file}
+          startPage={preview.page}
           paperColor={paper.color}
-          onClose={() => setActivePreviewFile(null)}
+          onClose={() => setPreview(null)}
         />
       )}
     </div>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { X, Download, FileText, ArrowLeft, Loader2, Folder } from 'lucide-react';
 
-export default function PdfViewerModal({ file, paperColor, onClose }) {
+export default function PdfViewerModal({ file, paperColor, onClose, startPage }) {
   if (!file) return null;
 
   useEffect(() => {
@@ -13,7 +13,8 @@ export default function PdfViewerModal({ file, paperColor, onClose }) {
   }, [file]);
 
   const pdfUrl = file.downloadUrl;
-  const proxyViewerUrl = `/api/pdf-proxy?url=${encodeURIComponent(pdfUrl)}`;
+  const pageHash = startPage ? `#page=${startPage}` : '';
+  const proxyViewerUrl = `/api/pdf-proxy?url=${encodeURIComponent(pdfUrl)}${pageHash}`;
 
   const modalJSX = (
     <div
@@ -85,7 +86,9 @@ export default function PdfViewerModal({ file, paperColor, onClose }) {
                 {file.name}
               </h2>
               <span style={{ fontSize: '0.7rem', color: '#94a3b8', display: 'block', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                {file.size || (file.type === 'folder' ? 'Folder Asset' : 'In-App PDF Reader')}
+                {startPage
+                  ? `Opening at page ${startPage}`
+                  : (file.size || (file.type === 'folder' ? 'Folder Asset' : 'In-App PDF Reader'))}
               </span>
             </div>
           </div>

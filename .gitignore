@@ -8,6 +8,7 @@ dist-ssr
 !.env.example
 
 temp_downloads/
+.pdf-tools/
 uploaded_mapping.json
 sync_drive_to_gh_release.py
 

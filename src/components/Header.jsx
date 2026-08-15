@@ -20,7 +20,7 @@ export default function Header({ searchQuery, setSearchQuery, isDark, setIsDark 
           <input
             type="text"
             className="search-input"
-            placeholder="Search papers, topics (e.g. Taxation, Law, Accounting, Costing)..."
+            placeholder="Search PDFs or chapters (e.g. GST, Partnership, Capital Budgeting)..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />

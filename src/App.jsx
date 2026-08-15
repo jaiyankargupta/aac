@@ -50,7 +50,10 @@ export default function App() {
       paper.paperNumber.toLowerCase().includes(searchQuery.toLowerCase()) ||
       paper.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
       paper.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      paper.files.some(f => f.name.toLowerCase().includes(searchQuery.toLowerCase()));
+      paper.files.some(f =>
+        f.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        (f.chapters || []).some(ch => ch.title.toLowerCase().includes(searchQuery.toLowerCase()))
+      );
 
     if (activeCategory === 'ALL') return matchesSearch;
     if (activeCategory === 'GROUP_1') return matchesSearch && paper.group === 'GROUP 1';
@@ -74,7 +77,7 @@ export default function App() {
           <div>
             <h2 className="filter-title">AAC Study Materials Catalog</h2>
             <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>
-              Select any paper card to view or click "Download" to save files directly to your device.
+              Each subject is listed PDF-wise. Open a book, expand its chapters, and jump straight to that page.
             </p>
           </div>
 
